@@ -64,7 +64,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="divider"
+            android:contentDescription="@string/divider"
             android:src="@drawable/empty_divider" />
 
         <TextView
@@ -97,24 +97,29 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="divider"
+            android:contentDescription="@string/divider"
             android:src="@drawable/empty_divider" />
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:onClick="login"
-        android:text="@string/login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_form"
-        app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:id="@+id/login_form_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="login"
+            android:text="@string/login" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/divider"
+            android:src="@drawable/empty_divider" />
+
+        <TextView
+            android:id="@+id/login_form_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="navigateRegister"
+            android:text="@string/login_inforegister" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

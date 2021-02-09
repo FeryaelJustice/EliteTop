@@ -1,32 +1,42 @@
 package com.solucionescreativasdemallorca.elitetop
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 
 class LoginActivity : AppCompatActivity() {
-    var email: TextInputEditText = TextInputEditText(applicationContext)
-    var password: TextInputEditText = TextInputEditText(applicationContext)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        /*
-        val textInputLayout = TextInputLayout(this)
-        val editText = TextInputEditText(textInputLayout.context)
-        */
-
-        email = findViewById(R.id.login_form_email_material_text)
-        password = findViewById(R.id.login_form_password_material_text)
+        // Hide top app bar (not android top bar)
+        supportActionBar?.hide()
     }
 
-    fun login() {
-        val emailValue = email.text
-        val passwordValue = password.text
+    fun login(view: View) {
+        val email: TextInputEditText = findViewById(R.id.login_form_email_material_text)
+        val password: TextInputEditText = findViewById(R.id.login_form_password_material_text)
 
-        Toast.makeText(applicationContext, "${emailValue} ${passwordValue}", Toast.LENGTH_LONG)
-            ?.show()
+        if (email.text?.isNullOrBlank() == false && password.text?.isNullOrBlank() == false) {
+            Toast.makeText(
+                applicationContext,
+                "¡Debes no introducir un email o contraseña vacíos!",
+                Toast.LENGTH_LONG
+            )?.show()
+        } else {
+            Toast.makeText(
+                applicationContext,
+                "${email.text} ${password.text}",
+                Toast.LENGTH_SHORT
+            )?.show()
+        }
+    }
+
+    fun navigateRegister(view: View) {
+        startActivity(Intent(this, RegisterActivity::class.java))
     }
 }
