@@ -23,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun login() {
-        var emailValue = email.text
-        var passwordValue = password.text
+        val emailValue = email.text
+        val passwordValue = password.text
 
         Toast.makeText(applicationContext, "${emailValue} ${passwordValue}", Toast.LENGTH_LONG)
             ?.show()
