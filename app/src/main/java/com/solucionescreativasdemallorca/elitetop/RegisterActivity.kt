@@ -20,18 +20,20 @@ class RegisterActivity : AppCompatActivity() {
         val email: TextInputEditText = findViewById(R.id.register_form_email_material_text)
         val nickname: TextInputEditText = findViewById(R.id.register_form_nickname_material_text)
         val password: TextInputEditText = findViewById(R.id.register_form_password_material_text)
-        val repeatPassowrd: TextInputEditText =
+        val repeatPassword: TextInputEditText =
             findViewById(R.id.register_form_repeatpassword_material_text)
         val phone: TextInputEditText = findViewById(R.id.register_form_phone_material_text)
 
-        if (email.text.isNullOrBlank() || nickname.text.isNullOrBlank() || password.text.isNullOrBlank() || repeatPassowrd.text.isNullOrBlank() || phone.text.isNullOrBlank()) {
+        if (email.text.isNullOrBlank() || nickname.text.isNullOrBlank() || password.text.isNullOrBlank() || repeatPassword.text.isNullOrBlank() || phone.text.isNullOrBlank()) {
             Toast.makeText(
                 applicationContext,
                 "¡No debe haber ningún campo vacío!",
                 Toast.LENGTH_SHORT
             )?.show()
         } else {
-            if (password.text!! == repeatPassowrd.text!!) {
+            Toast.makeText(this, "${password.text} ${repeatPassword.text}", Toast.LENGTH_SHORT)
+                .show()
+            if (password.text?.toString() == repeatPassword.text?.toString()) {
                 Toast.makeText(
                     applicationContext,
                     "${email.text} ${password.text}",
