@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">EliteTop</string>
+    <string name="app_name" translatable="false">EliteTop</string>
+
+    <!-- Login Layout -->
+    <string name="login_intro">¡Bienvenido a Elite Top!</string>
+    <string name="login_title">Iniciar Sesión</string>
 </resources>
