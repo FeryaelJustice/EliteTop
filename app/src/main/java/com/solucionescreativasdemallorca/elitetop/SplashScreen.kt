@@ -12,8 +12,8 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            overridePendingTransition(R.anim.fadein,R.anim.fadeout)
+            startActivity(Intent(this, LoginActivity::class.java))
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout)
             finish()
         }, 1000)
     }
