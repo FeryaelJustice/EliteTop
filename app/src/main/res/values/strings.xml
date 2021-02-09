@@ -2,9 +2,19 @@
     <string name="app_name" translatable="false">EliteTop</string>
     <string name="divider" translatable="false">divider</string>
 
+    <!-- Utilities -->
+
+    <string name="email">Correo electrónico</string>
+    <string name="nickname">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="repeatpassword">Repetir contraseña</string>
+    <string name="phone">Numero de teléfono</string>
+
+    <!-- Login Activity -->
     <string name="login_intro">¡Bienvenido a Elite Top!</string>
     <string name="login">Iniciar Sesión</string>
-    <string name="email">Correo electrónico</string>
-    <string name="password">Contraseña</string>
     <string name="login_inforegister">¿Aún no tienes una cuenta? Regístrate aquí.</string>
+
+    <!-- Register Activity -->
+    <string name="register">Regístrate</string>
 </resources>

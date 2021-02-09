@@ -21,11 +21,11 @@ class LoginActivity : AppCompatActivity() {
         val email: TextInputEditText = findViewById(R.id.login_form_email_material_text)
         val password: TextInputEditText = findViewById(R.id.login_form_password_material_text)
 
-        if (email.text?.isNullOrBlank() == true && password.text?.isNullOrBlank() == true) {
+        if (email.text.isNullOrBlank() || password.text.isNullOrBlank()) {
             Toast.makeText(
                 applicationContext,
                 "¡Debes no introducir un email o contraseña vacíos!",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             )?.show()
         } else {
             Toast.makeText(
@@ -33,6 +33,9 @@ class LoginActivity : AppCompatActivity() {
                 "${email.text} ${password.text}",
                 Toast.LENGTH_SHORT
             )?.show()
+
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 

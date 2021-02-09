@@ -1,8 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/register_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <LinearLayout
+        android:id="@+id/register_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_intro"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/register_form_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_form_email_material"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            app:counterEnabled="true"
+            app:counterMaxLength="80"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:helperText="Pon tu email"
+            app:helperTextEnabled="true"
+            app:startIconContentDescription="UserIcon"
+            app:startIconDrawable="@drawable/ic_baseline_supervised_user_circle_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_form_email_material_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/divider"
+            android:src="@drawable/empty_divider" />
+
+        <TextView
+            android:id="@+id/register_form_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nickname"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_form_nickname_material"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nickname"
+            app:counterEnabled="true"
+            app:counterMaxLength="40"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:helperText="Pon tu nickname"
+            app:helperTextEnabled="true"
+            app:startIconContentDescription="UserIcon"
+            app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_form_nickname_material_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/divider"
+            android:src="@drawable/empty_divider" />
+
+        <TextView
+            android:id="@+id/register_form_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_form_password_material"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            app:counterEnabled="true"
+            app:counterMaxLength="40"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:helperText="Pon tu contraseña"
+            app:helperTextEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_security_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_form_password_material_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/divider"
+            android:src="@drawable/empty_divider" />
+
+        <TextView
+            android:id="@+id/register_form_repeatpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/repeatpassword"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_form_repeatpassword_material"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/repeatpassword"
+            app:counterEnabled="true"
+            app:counterMaxLength="40"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:helperText="Repite tu contraseña"
+            app:helperTextEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_security_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_form_repeatpassword_material_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/divider"
+            android:src="@drawable/empty_divider" />
+
+        <TextView
+            android:id="@+id/register_form_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_form_phone_material"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            app:counterEnabled="true"
+            app:counterMaxLength="40"
+            app:endIconMode="none"
+            app:errorEnabled="true"
+            app:helperText="Pon tu teléfono"
+            app:helperTextEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_form_phone_material_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/divider"
+            android:src="@drawable/empty_divider" />
+
+        <Button
+            android:id="@+id/register_form_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="register"
+            android:text="@string/register" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/divider"
+            android:src="@drawable/empty_divider" />
+
+        <TextView
+            android:id="@+id/register_form_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="register"
+            android:text="@string/login_inforegister" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
