@@ -17,6 +17,6 @@ class CompleteRegisterActivity : AppCompatActivity() {
                 intent.getStringExtra("phone").toString()
             } ${intent.getStringExtra("accounttype").toString()} ",
             Toast.LENGTH_SHORT
-        )
+        ).show()
     }
 }

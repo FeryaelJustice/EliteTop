@@ -229,7 +229,7 @@
                 android:id="@+id/register_form_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="register"
+                android:onClick="next"
                 android:text="@string/next" />
 
             <ImageView

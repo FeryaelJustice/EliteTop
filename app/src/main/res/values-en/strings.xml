@@ -8,6 +8,12 @@
     <string name="infoaccounttype">Account type</string>
     <string name="next">Next</string>
 
+    <string-array name="accountType_array">
+        <item name="accountType-choose">Choose an account type</item>
+        <item name="accountType-trainer">Trainer</item>
+        <item name="accountType-athlete">Athlete</item>
+    </string-array>
+
     <string name="login_intro">Welcome to Elite Top!</string>
     <string name="login">Login</string>
     <string name="login_inforegister">Still don\'t have an account? Register here.</string>

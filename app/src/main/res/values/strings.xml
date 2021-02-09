@@ -12,6 +12,12 @@
     <string name="infoaccounttype">Tipo de cuenta</string>
     <string name="next">Siguiente</string>
 
+    <string-array name="accountType_array">
+        <item name="accountType-choose">Selecciona un tipo de cuenta</item>
+        <item name="accountType-trainer">Entrenador</item>
+        <item name="accountType-athlete">Atleta</item>
+    </string-array>
+
     <!-- Login Activity -->
     <string name="login_intro">¡Bienvenido a Elite Top!</string>
     <string name="login">Iniciar Sesión</string>
