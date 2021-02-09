@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         if (email.text.isNullOrBlank() || password.text.isNullOrBlank()) {
             Toast.makeText(
                 applicationContext,
-                "¡Debes no introducir un email o contraseña vacíos!",
+                "¡No debe haber ningún campo vacío!",
                 Toast.LENGTH_SHORT
             )?.show()
         } else {
