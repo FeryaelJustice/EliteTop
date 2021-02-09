@@ -81,8 +81,12 @@ class RegisterActivity : AppCompatActivity() {
                 bundle.putString("password", password.text.toString())
                 bundle.putString("phone", phone.text.toString())
                 bundle.putString("accounttype", accountType.selectedItem?.toString().toString())
+                // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) (CLEAR TOP NOT DESTROYED ACTIVITIES)
                 startActivity(
-                    Intent(this, CompleteRegisterActivity::class.java).putExtras(bundle)
+                    Intent(
+                        this,
+                        CompleteRegisterActivity::class.java
+                    ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtras(bundle)
                 )
                 finish()
             } else {
