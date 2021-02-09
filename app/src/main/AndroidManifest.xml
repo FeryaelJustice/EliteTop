@@ -11,8 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EliteTop">
         <activity
-            android:name=".MainActivity"
+            android:name=".CompleteRegisterActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterActivity"
             android:screenOrientation="portrait" />

@@ -9,10 +9,13 @@
     <string name="password">Contraseña</string>
     <string name="repeatpassword">Repetir contraseña</string>
     <string name="phone">Numero de teléfono</string>
+    <string name="infoaccounttype">Tipo de cuenta</string>
+    <string name="next">Siguiente</string>
 
     <!-- Login Activity -->
     <string name="login_intro">¡Bienvenido a Elite Top!</string>
     <string name="login">Iniciar Sesión</string>
+    <string name="login_recoveraccount">¿Has olvidado tu contraseña? Recupera tu cuenta.</string>
     <string name="login_inforegister">¿Aún no tienes una cuenta? Regístrate aquí.</string>
 
     <!-- Register Activity -->

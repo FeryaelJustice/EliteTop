@@ -28,15 +28,17 @@ class LoginActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             )?.show()
         } else {
-            Toast.makeText(
-                applicationContext,
-                "${email.text} ${password.text}",
-                Toast.LENGTH_SHORT
-            )?.show()
-
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+    }
+
+    fun recoverAccount(view: View) {
+        Toast.makeText(
+            applicationContext,
+            "¡Recuperar contraseña!",
+            Toast.LENGTH_SHORT
+        )?.show()
     }
 
     fun navigateRegister(view: View) {

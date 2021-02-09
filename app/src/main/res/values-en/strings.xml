@@ -5,10 +5,13 @@
     <string name="password">Password</string>
     <string name="repeatpassword">Repeat password</string>
     <string name="phone">Phone number</string>
+    <string name="infoaccounttype">Account type</string>
+    <string name="next">Next</string>
 
     <string name="login_intro">Welcome to Elite Top!</string>
     <string name="login">Login</string>
     <string name="login_inforegister">Still don\'t have an account? Register here.</string>
+    <string name="login_recoveraccount">Forgot your password? Recover your account.</string>
 
     <string name="register">Register</string>
 </resources>

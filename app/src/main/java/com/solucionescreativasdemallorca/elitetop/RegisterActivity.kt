@@ -3,6 +3,8 @@ package com.solucionescreativasdemallorca.elitetop
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -11,6 +13,14 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        val spinner: Spinner = findViewById(R.id.register_form_accounttype)
+        spinner.adapter = ArrayAdapter<AccountType>(
+            this,
+            android.R.layout.simple_spinner_item,
+            AccountType.values()
+        )
+        spinner.setSelection(0)
 
         // Hide top app bar (not android top bar)
         supportActionBar?.hide()
@@ -23,6 +33,7 @@ class RegisterActivity : AppCompatActivity() {
         val repeatPassword: TextInputEditText =
             findViewById(R.id.register_form_repeatpassword_material_text)
         val phone: TextInputEditText = findViewById(R.id.register_form_phone_material_text)
+        val accountType: Spinner = findViewById(R.id.register_form_accounttype)
 
         if (email.text.isNullOrBlank() || nickname.text.isNullOrBlank() || password.text.isNullOrBlank() || repeatPassword.text.isNullOrBlank() || phone.text.isNullOrBlank()) {
             Toast.makeText(
@@ -31,16 +42,14 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             )?.show()
         } else {
-            Toast.makeText(this, "${password.text} ${repeatPassword.text}", Toast.LENGTH_SHORT)
-                .show()
             if (password.text?.toString() == repeatPassword.text?.toString()) {
-                Toast.makeText(
-                    applicationContext,
-                    "${email.text} ${password.text}",
-                    Toast.LENGTH_SHORT
-                )?.show()
-
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, CompleteRegisterActivity::class.java).apply {
+                    putExtra("email", email.text.toString())
+                    putExtra("nickname", nickname.text.toString())
+                    putExtra("password", password.text.toString())
+                    putExtra("phone", phone.text.toString())
+                    putExtra("accounttype", accountType.selectedItem?.toString().toString())
+                })
                 finish()
             } else {
                 Toast.makeText(
