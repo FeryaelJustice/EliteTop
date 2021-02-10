@@ -5,13 +5,25 @@
     <string name="password">Password</string>
     <string name="repeatpassword">Repeat password</string>
     <string name="phone">Phone number</string>
-    <string name="infoaccounttype">Account type</string>
+    <string name="infoaccounttype">Select your account type</string>
+
+    <string name="name">Name</string>
+    <string name="surnames">Surnames</string>
+    <string name="genre">Select your genre</string>
+    <string name="nationality">Select your nationality</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="sports">Sports</string>
+
     <string name="next">Next</string>
 
     <string-array name="accountType_array">
-        <item name="accountType-choose">Choose an account type</item>
         <item name="accountType-trainer">Trainer</item>
         <item name="accountType-athlete">Athlete</item>
+    </string-array>
+
+    <string-array name="genres_array">
+        <item name="genres-man">Man</item>
+        <item name="genres_woman">Woman</item>
     </string-array>
 
     <string name="login_intro">Welcome to Elite Top!</string>
@@ -20,4 +32,5 @@
     <string name="login_recoveraccount">Forgot your password? Recover your account.</string>
 
     <string name="register">Register</string>
+    <string name="completeregister">Complete register</string>
 </resources>

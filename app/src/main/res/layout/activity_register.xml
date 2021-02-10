@@ -36,24 +36,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/register_form_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/email"
-                android:textStyle="bold" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_form_email_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                app:counterEnabled="true"
-                app:counterMaxLength="80"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                app:helperText="Pon tu email"
-                app:helperTextEnabled="true"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_email_24">
 
@@ -71,24 +60,13 @@
                 android:contentDescription="@string/divider"
                 android:src="@drawable/empty_divider" />
 
-            <TextView
-                android:id="@+id/register_form_nickname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nickname"
-                android:textStyle="bold" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_form_nickname_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nickname"
-                app:counterEnabled="true"
-                app:counterMaxLength="40"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                app:helperText="Pon tu nickname"
-                app:helperTextEnabled="true"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_person_24">
 
@@ -106,24 +84,13 @@
                 android:contentDescription="@string/divider"
                 android:src="@drawable/empty_divider" />
 
-            <TextView
-                android:id="@+id/register_form_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/password"
-                android:textStyle="bold" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_form_password_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                app:counterEnabled="true"
-                app:counterMaxLength="40"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
-                app:helperText="Pon tu contraseña"
-                app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/ic_baseline_security_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -139,24 +106,13 @@
                 android:contentDescription="@string/divider"
                 android:src="@drawable/empty_divider" />
 
-            <TextView
-                android:id="@+id/register_form_repeatpassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/repeatpassword"
-                android:textStyle="bold" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_form_repeatpassword_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/repeatpassword"
-                app:counterEnabled="true"
-                app:counterMaxLength="40"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
-                app:helperText="Repite tu contraseña"
-                app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/ic_baseline_security_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -172,24 +128,13 @@
                 android:contentDescription="@string/divider"
                 android:src="@drawable/empty_divider" />
 
-            <TextView
-                android:id="@+id/register_form_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/phone"
-                android:textStyle="bold" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_form_phone_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone"
-                app:counterEnabled="true"
-                app:counterMaxLength="40"
                 app:endIconMode="none"
                 app:errorEnabled="true"
-                app:helperText="Pon tu teléfono"
-                app:helperTextEnabled="true"
                 app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -207,17 +152,29 @@
                 android:contentDescription="@string/divider"
                 android:src="@drawable/empty_divider" />
 
-            <TextView
-                android:id="@+id/register_form_infoaccounttype"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/infoaccounttype"
-                android:textStyle="bold" />
+                android:hint="@string/infoaccounttype"
+                android:orientation="horizontal"
+                app:startIconContentDescription="UserIcon"
+                app:startIconDrawable="@drawable/ic_baseline_email_24">
 
+                <AutoCompleteTextView
+                    android:id="@+id/register_form_accounttype_material_dropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <!--
             <Spinner
                 android:id="@+id/register_form_accounttype"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            -->
 
             <ImageView
                 android:layout_width="wrap_content"

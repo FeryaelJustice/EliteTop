@@ -5,30 +5,39 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 
 class RegisterActivity : AppCompatActivity() {
 
-    private var accountTypeSelected: Boolean = false
     private var check = 0
+
+    private var accountTypeSelected: Boolean = false
+    private var accountType: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val spinner: Spinner = findViewById(R.id.register_form_accounttype)
+        // Hide top app bar (not android top bar)
+        supportActionBar?.hide()
+
+        // Spinner country Phone
+
+        // Spinner account Type
+        val textViewAccountType: AutoCompleteTextView =
+            findViewById(R.id.register_form_accounttype_material_dropdown)
         ArrayAdapter.createFromResource(
             this,
             R.array.accountType_array,
             android.R.layout.simple_spinner_dropdown_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
+            textViewAccountType.setAdapter(adapter)
         }
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        textViewAccountType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -37,8 +46,9 @@ class RegisterActivity : AppCompatActivity() {
             ) {
                 if (++check > 1) {
                     if (position != 0) {
-                        val item = parent?.getItemAtPosition(position)?.toString()
+                        val item = parent?.getItemAtPosition(position)
                         accountTypeSelected = true
+                        accountType = item.toString()
                     } else {
                         accountTypeSelected = false
                     }
@@ -49,9 +59,6 @@ class RegisterActivity : AppCompatActivity() {
                 accountTypeSelected = false
             }
         }
-
-        // Hide top app bar (not android top bar)
-        supportActionBar?.hide()
     }
 
     fun showMessage(msg: String?) {
@@ -65,7 +72,6 @@ class RegisterActivity : AppCompatActivity() {
         val repeatPassword: TextInputEditText =
             findViewById(R.id.register_form_repeatpassword_material_text)
         val phone: TextInputEditText = findViewById(R.id.register_form_phone_material_text)
-        val accountType: Spinner = findViewById(R.id.register_form_accounttype)
 
         if (email.text.isNullOrBlank() || nickname.text.isNullOrBlank() || password.text.isNullOrBlank() || repeatPassword.text.isNullOrBlank() || phone.text.isNullOrBlank() || !accountTypeSelected) {
             Toast.makeText(
@@ -80,13 +86,9 @@ class RegisterActivity : AppCompatActivity() {
                 bundle.putString("nickname", nickname.text.toString())
                 bundle.putString("password", password.text.toString())
                 bundle.putString("phone", phone.text.toString())
-                bundle.putString("accounttype", accountType.selectedItem?.toString().toString())
-                // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) (CLEAR TOP NOT DESTROYED ACTIVITIES)
+                bundle.putString("accounttype", accountType)
                 startActivity(
-                    Intent(
-                        this,
-                        CompleteRegisterActivity::class.java
-                    ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtras(bundle)
+                    Intent(this, CompleteRegisterActivity::class.java).putExtras(bundle)
                 )
                 finish()
             } else {

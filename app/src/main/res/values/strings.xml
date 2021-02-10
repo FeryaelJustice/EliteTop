@@ -9,13 +9,25 @@
     <string name="password">Contraseña</string>
     <string name="repeatpassword">Repetir contraseña</string>
     <string name="phone">Numero de teléfono</string>
-    <string name="infoaccounttype">Tipo de cuenta</string>
+    <string name="infoaccounttype">Selecciona tu tipo de cuenta</string>
+
+    <string name="name">Nombre</string>
+    <string name="surnames">Apellidos</string>
+    <string name="genre">Selecciona tu sexo</string>
+    <string name="nationality">Selecciona tu nacionalidad</string>
+    <string name="birthdate">Fecha de nacimiento</string>
+    <string name="sports">Deportes</string>
+
     <string name="next">Siguiente</string>
 
     <string-array name="accountType_array">
-        <item name="accountType-choose">Selecciona un tipo de cuenta</item>
         <item name="accountType-trainer">Entrenador</item>
         <item name="accountType-athlete">Atleta</item>
+    </string-array>
+
+    <string-array name="genres_array">
+        <item name="genres-man">Hombre</item>
+        <item name="genres_woman">Mujer</item>
     </string-array>
 
     <!-- Login Activity -->
@@ -26,4 +38,5 @@
 
     <!-- Register Activity -->
     <string name="register">Regístrate</string>
+    <string name="completeregister">Completar registro</string>
 </resources>

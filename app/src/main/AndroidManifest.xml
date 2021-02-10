@@ -12,7 +12,7 @@
         android:theme="@style/Theme.EliteTop">
         <activity
             android:name=".CompleteRegisterActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
