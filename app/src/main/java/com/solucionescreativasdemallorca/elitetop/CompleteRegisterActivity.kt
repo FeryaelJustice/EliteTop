@@ -107,9 +107,10 @@ class CompleteRegisterActivity : AppCompatActivity() {
             bundle.putString("spinnerNationality", spinnerNationality.text.toString())
             startActivity(
                 intent.extras?.let {
-                    Intent(this, CompleteRegisterActivity::class.java).putExtras(bundle).putExtras(
-                        it
-                    )
+                    Intent(this, AdditionalInfoRegisterActivity::class.java).putExtras(bundle)
+                        .putExtras(
+                            it
+                        )
                 }
             )
             finish()

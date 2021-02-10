@@ -43,7 +43,7 @@
                 android:hint="@string/sports"
                 android:orientation="horizontal"
                 app:startIconContentDescription="UserIcon"
-                app:startIconDrawable="@drawable/ic_baseline_email_24">
+                app:startIconDrawable="@drawable/ic_baseline_directions_run_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/additionalinforegister_form_sports_material_text"
