@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
                 app:endIconMode="clear_text"
-                app:errorEnabled="true"
+                android:orientation="horizontal"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_email_24">
 
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/nickname"
                 app:endIconMode="clear_text"
-                app:errorEnabled="true"
+                android:orientation="horizontal"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_person_24">
 
@@ -89,8 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
+                android:orientation="horizontal"
                 app:endIconMode="password_toggle"
-                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_baseline_security_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -111,8 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/repeatpassword"
+                android:orientation="horizontal"
                 app:endIconMode="password_toggle"
-                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_baseline_security_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -133,8 +133,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone"
+                android:orientation="horizontal"
                 app:endIconMode="none"
-                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
 
                 <com.google.android.material.textfield.TextInputEditText
