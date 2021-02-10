@@ -41,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:hint="@string/sports"
+                app:endIconMode="clear_text"
                 android:orientation="horizontal"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_directions_run_24">
@@ -49,8 +50,7 @@
                     android:id="@+id/additionalinforegister_form_sports_material_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:focusable="false" />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
