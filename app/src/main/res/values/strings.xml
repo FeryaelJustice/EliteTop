@@ -40,5 +40,5 @@
     <!-- Register Activity -->
     <string name="register">Regístrate</string>
     <string name="completeregister">Registro</string>
-    <string name="additionalinforegister">Finalize Register</string>
+    <string name="additionalinforegister">Finalizar Registro</string>
 </resources>
