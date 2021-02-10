@@ -3,7 +3,6 @@ package com.solucionescreativasdemallorca.elitetop
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
@@ -12,19 +11,12 @@ import com.google.android.material.textfield.TextInputEditText
 
 class RegisterActivity : AppCompatActivity() {
 
-    private var check = 0
-
-    private var accountTypeSelected: Boolean = false
-    private var accountType: String = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         // Hide top app bar (not android top bar)
         supportActionBar?.hide()
-
-        // Spinner country Phone
 
         // Spinner account Type
         val textViewAccountType: AutoCompleteTextView =
@@ -37,32 +29,6 @@ class RegisterActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             textViewAccountType.setAdapter(adapter)
         }
-        textViewAccountType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (++check > 1) {
-                    if (position != 0) {
-                        val item = parent?.getItemAtPosition(position)
-                        accountTypeSelected = true
-                        accountType = item.toString()
-                    } else {
-                        accountTypeSelected = false
-                    }
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                accountTypeSelected = false
-            }
-        }
-    }
-
-    fun showMessage(msg: String?) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     fun next(view: View) {
@@ -72,8 +38,12 @@ class RegisterActivity : AppCompatActivity() {
         val repeatPassword: TextInputEditText =
             findViewById(R.id.register_form_repeatpassword_material_text)
         val phone: TextInputEditText = findViewById(R.id.register_form_phone_material_text)
+        val textViewAccountType: AutoCompleteTextView =
+            findViewById(R.id.register_form_accounttype_material_dropdown)
 
-        if (email.text.isNullOrBlank() || nickname.text.isNullOrBlank() || password.text.isNullOrBlank() || repeatPassword.text.isNullOrBlank() || phone.text.isNullOrBlank() || !accountTypeSelected) {
+        if (email.text.isNullOrBlank() || nickname.text.isNullOrBlank() || password.text.isNullOrBlank() || repeatPassword.text.isNullOrBlank() || phone.text.isNullOrBlank() || textViewAccountType.text.toString()
+                .isNullOrBlank()
+        ) {
             Toast.makeText(
                 applicationContext,
                 "¡No debe haber ningún campo vacío!",
@@ -86,7 +56,7 @@ class RegisterActivity : AppCompatActivity() {
                 bundle.putString("nickname", nickname.text.toString())
                 bundle.putString("password", password.text.toString())
                 bundle.putString("phone", phone.text.toString())
-                bundle.putString("accounttype", accountType)
+                bundle.putString("accounttype", textViewAccountType.text.toString())
                 startActivity(
                     Intent(this, CompleteRegisterActivity::class.java).putExtras(bundle)
                 )

@@ -42,12 +42,11 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
                 app:endIconMode="clear_text"
-                app:errorEnabled="true"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_email_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/register_form_name_material_text"
+                    android:id="@+id/completeregister_form_name_material_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -66,12 +65,11 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/surnames"
                 app:endIconMode="clear_text"
-                app:errorEnabled="true"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_email_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/register_form_surnames_material_text"
+                    android:id="@+id/completeregister_form_surnames_material_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -135,10 +133,8 @@
                 android:id="@+id/completeregister_form_birthdate_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="false"
                 android:hint="@string/birthdate"
-                app:errorEnabled="true"
+                android:orientation="horizontal"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_email_24">
 
@@ -155,8 +151,8 @@
                 android:id="@+id/completeregister_form_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="register"
-                android:text="@string/completeregister" />
+                android:onClick="goToLastStepRegister"
+                android:text="@string/next" />
 
         </LinearLayout>
 

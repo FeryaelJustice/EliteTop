@@ -12,9 +12,10 @@
     <string name="genre">Select your genre</string>
     <string name="nationality">Select your nationality</string>
     <string name="birthdate">Birthdate</string>
-    <string name="sports">Sports</string>
 
     <string name="next">Next</string>
+
+    <string name="sports">Sports</string>
 
     <string-array name="accountType_array">
         <item name="accountType-trainer">Trainer</item>
@@ -33,4 +34,5 @@
 
     <string name="register">Register</string>
     <string name="completeregister">Complete register</string>
+    <string name="additionalinforegister">Finalize register</string>
 </resources>

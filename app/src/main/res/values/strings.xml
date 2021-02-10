@@ -16,9 +16,10 @@
     <string name="genre">Selecciona tu sexo</string>
     <string name="nationality">Selecciona tu nacionalidad</string>
     <string name="birthdate">Fecha de nacimiento</string>
-    <string name="sports">Deportes</string>
 
     <string name="next">Siguiente</string>
+
+    <string name="sports">Deportes</string>
 
     <string-array name="accountType_array">
         <item name="accountType-trainer">Entrenador</item>
@@ -38,5 +39,6 @@
 
     <!-- Register Activity -->
     <string name="register">Regístrate</string>
-    <string name="completeregister">Completar registro</string>
+    <string name="completeregister">Registro</string>
+    <string name="additionalinforegister">Finalize Register</string>
 </resources>

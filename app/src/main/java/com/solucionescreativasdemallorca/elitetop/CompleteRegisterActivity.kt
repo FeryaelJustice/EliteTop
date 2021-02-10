@@ -1,10 +1,11 @@
 package com.solucionescreativasdemallorca.elitetop
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
@@ -14,13 +15,6 @@ import kotlin.collections.ArrayList
 
 
 class CompleteRegisterActivity : AppCompatActivity() {
-
-    private var check = 0
-
-    private var genreSelected: Boolean = false
-    private var genre: String = ""
-    private var nationalitySelected: Boolean = false
-    private var nationality: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,28 +41,6 @@ class CompleteRegisterActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             textViewGenre.setAdapter(adapter)
         }
-        textViewGenre.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (++check > 1) {
-                    if (position != 0) {
-                        val item = parent?.getItemAtPosition(position)
-                        genreSelected = true
-                        genre = item.toString()
-                    } else {
-                        genreSelected = false
-                    }
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                genreSelected = false
-            }
-        }
 
         // Spinner Nationality
         val locales: Array<Locale> = Locale.getAvailableLocales()
@@ -88,27 +60,6 @@ class CompleteRegisterActivity : AppCompatActivity() {
         )
         countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerNationality.setAdapter(countryAdapter)
-        spinnerNationality.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (++check > 1) {
-                    if (position != 0) {
-                        val item = parent?.getItemAtPosition(position)?.toString()
-                        nationalitySelected = true
-                    } else {
-                        nationalitySelected = false
-                    }
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                nationalitySelected = false
-            }
-        }
     }
 
     fun pickDate() {
@@ -127,7 +78,41 @@ class CompleteRegisterActivity : AppCompatActivity() {
         dateText.setText(date)
     }
 
-    fun register(view: View?) {
+    fun goToLastStepRegister(view: View?) {
+        val name: TextInputEditText =
+            findViewById(R.id.completeregister_form_name_material_text)
+        val surnames: TextInputEditText =
+            findViewById(R.id.completeregister_form_surnames_material_text)
+        val birth: TextInputEditText =
+            findViewById(R.id.completeregister_form_birthdate_material_text)
+        val textViewGenre: AutoCompleteTextView =
+            findViewById(R.id.completeregister_form_genre_material_dropdown)
+        val spinnerNationality: AutoCompleteTextView =
+            findViewById(R.id.completeregister_form_nationality_material_dropdown)
 
+        if (name.text.isNullOrBlank() || surnames.text.isNullOrBlank() || birth.text.isNullOrBlank() || textViewGenre.text.toString()
+                .isNullOrBlank() || spinnerNationality.text.toString().isNullOrBlank()
+        ) {
+            Toast.makeText(
+                applicationContext,
+                "¡No debe haber ningún campo vacío!",
+                Toast.LENGTH_SHORT
+            )?.show()
+        } else {
+            val bundle = Bundle()
+            bundle.putString("name", name.text.toString())
+            bundle.putString("surnames", surnames.text.toString())
+            bundle.putString("birth", birth.text.toString())
+            bundle.putString("textViewGenre", textViewGenre.text.toString())
+            bundle.putString("spinnerNationality", spinnerNationality.text.toString())
+            startActivity(
+                intent.extras?.let {
+                    Intent(this, CompleteRegisterActivity::class.java).putExtras(bundle).putExtras(
+                        it
+                    )
+                }
+            )
+            finish()
+        }
     }
 }
