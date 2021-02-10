@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "400813722540",
+    "project_id": "elitetop-92729",
+    "storage_bucket": "elitetop-92729.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400813722540:android:00e23c11f0df7c42c5c809",
+        "android_client_info": {
+          "package_name": "com.solucionescreativasdemallorca.elitetop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400813722540-bo4omb9r0bskva4r1511lbahtcbseeh6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.solucionescreativasdemallorca.elitetop",
+            "certificate_hash": "0b1f644f1212bb83ba84f603febd8b2f7d1209e6"
+          }
+        },
+        {
+          "client_id": "400813722540-dqp564ephmko32oprbucd9pngctkdpk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeTyNfATP0r_MdMmvpTJxMYHxlicTynyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400813722540-dqp564ephmko32oprbucd9pngctkdpk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
