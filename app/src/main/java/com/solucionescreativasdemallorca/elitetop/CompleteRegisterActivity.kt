@@ -2,9 +2,9 @@ package com.solucionescreativasdemallorca.elitetop
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -60,9 +60,15 @@ class CompleteRegisterActivity : AppCompatActivity() {
         )
         countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerNationality.setAdapter(countryAdapter)
+
+        // On Clicks
+        val btn: Button = findViewById(R.id.completeregister_form_btn)
+        btn.setOnClickListener {
+            goToLastStepRegister()
+        }
     }
 
-    fun pickDate() {
+    private fun pickDate() {
         var materialDatePicker =
             MaterialDatePicker.Builder.datePicker().setTitleText("Select a date").build()
         materialDatePicker.addOnPositiveButtonClickListener {
@@ -72,13 +78,13 @@ class CompleteRegisterActivity : AppCompatActivity() {
 
     }
 
-    fun setDate(date: String) {
+    private fun setDate(date: String) {
         var dateText: TextInputEditText =
             findViewById(R.id.completeregister_form_birthdate_material_text)
         dateText.setText(date)
     }
 
-    fun goToLastStepRegister(view: View?) {
+    private fun goToLastStepRegister() {
         val name: TextInputEditText =
             findViewById(R.id.completeregister_form_name_material_text)
         val surnames: TextInputEditText =
@@ -93,27 +99,36 @@ class CompleteRegisterActivity : AppCompatActivity() {
         if (name.text.isNullOrBlank() || surnames.text.isNullOrBlank() || birth.text.isNullOrBlank() || textViewGenre.text.toString()
                 .isNullOrBlank() || spinnerNationality.text.toString().isNullOrBlank()
         ) {
-            Toast.makeText(
-                applicationContext,
-                "¡No debe haber ningún campo vacío!",
-                Toast.LENGTH_SHORT
-            )?.show()
+            showMessage("¡No debe haber ningún campo vacío!")
         } else {
-            val bundle = Bundle()
-            bundle.putString("name", name.text.toString())
-            bundle.putString("surnames", surnames.text.toString())
-            bundle.putString("birth", birth.text.toString())
-            bundle.putString("textViewGenre", textViewGenre.text.toString())
-            bundle.putString("spinnerNationality", spinnerNationality.text.toString())
-            startActivity(
-                intent.extras?.let {
-                    Intent(this, AdditionalInfoRegisterActivity::class.java).putExtras(bundle)
-                        .putExtras(
-                            it
-                        )
-                }
-            )
-            finish()
+            intent?.let {
+                val bundle = Bundle()
+                bundle.putString("email", it.getStringExtra("email"))
+                bundle.putString("nickname", it.getStringExtra("nickname"))
+                bundle.putString("password", it.getStringExtra("password"))
+                bundle.putString("phone", it.getStringExtra("phone"))
+                bundle.putString("accountType", it.getStringExtra("accountType"))
+                bundle.putString("name", name.text.toString())
+                bundle.putString("surnames", surnames.text.toString())
+                bundle.putString("birth", birth.text.toString())
+                bundle.putString("genre", textViewGenre.text.toString())
+                bundle.putString("nationality", spinnerNationality.text.toString())
+                startActivity(
+                    Intent(
+                        this,
+                        AdditionalInfoRegisterActivity::class.java
+                    ).putExtras(bundle)
+                )
+                finish()
+            }
         }
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(
+            applicationContext,
+            message,
+            Toast.LENGTH_SHORT
+        )?.show()
     }
 }

@@ -2,7 +2,8 @@ package com.solucionescreativasdemallorca.elitetop
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -25,54 +26,76 @@ class LoginActivity : AppCompatActivity() {
         // Hide top app bar (not android top bar)
         supportActionBar?.hide()
 
-        // Firebase
-        initFirebase()
+        // Firebase Analytics
+        firebaseAnalytics = Firebase.analytics
+        val bundle = Bundle()
+        bundle.putString("message", "Integración de Firebase completa")
+        firebaseAnalytics.logEvent("InitScreen", bundle)
+
+        // Firebase Authentication
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        // On Clicks
+        val btn: Button = findViewById(R.id.login_form_btn)
+        btn.setOnClickListener {
+            login()
+        }
+        val recoverAccount: TextView = findViewById(R.id.login_form_recoveraccount)
+        recoverAccount.setOnClickListener {
+            recoverAccount()
+        }
+        val register: TextView = findViewById(R.id.login_form_register)
+        register.setOnClickListener {
+            navigateRegister()
+        }
     }
 
     override fun onStart() {
         super.onStart()
 
         // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser: FirebaseUser? = firebaseAuth.currentUser
-
-    }
-
-    fun initFirebase() {
-        // Analytics
-        firebaseAnalytics = Firebase.analytics
-        val bundle = Bundle()
-        bundle.putString("message", "Integración de Firebase completa")
-        firebaseAnalytics.logEvent("InitScreen", bundle)
-
-        // Authentication
-        firebaseAuth = FirebaseAuth.getInstance()
-    }
-
-    fun login(view: View) {
-        val email: TextInputEditText = findViewById(R.id.login_form_email_material_text)
-        val password: TextInputEditText = findViewById(R.id.login_form_password_material_text)
-
-        if (email.text.isNullOrBlank() || password.text.isNullOrBlank()) {
-            Toast.makeText(
-                applicationContext,
-                "¡No debe haber ningún campo vacío!",
-                Toast.LENGTH_SHORT
-            )?.show()
-        } else {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+        firebaseAuth.currentUser.let {
+            val currentUser: FirebaseUser? = it
         }
     }
 
-    fun recoverAccount(view: View) {
-        Toast.makeText(
-            applicationContext,
-            "¡Recuperar contraseña!",
-            Toast.LENGTH_SHORT
-        )?.show()
+    override fun onDestroy() {
+        super.onDestroy()
+        FirebaseAuth.getInstance().signOut()
     }
 
-    fun navigateRegister(view: View) {
+    private fun login() {
+        val email: TextInputEditText = findViewById(R.id.login_form_email_material_text)
+        val password: TextInputEditText = findViewById(R.id.login_form_password_material_text)
+        if (email.text.isNullOrBlank() || password.text.isNullOrBlank()) {
+            showMessage("¡No debe haber ningún campo vacío!")
+        } else {
+            FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    } else {
+                        showMessage("Error al iniciar sesión")
+                    }
+                }
+        }
+    }
+
+    private fun recoverAccount() {
+        showMessage("¡Recuperar contraseña!")
+    }
+
+    private fun navigateRegister() {
         startActivity(Intent(this, RegisterActivity::class.java))
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(
+            applicationContext,
+            message,
+            Toast.LENGTH_SHORT
+        )?.show()
     }
 }

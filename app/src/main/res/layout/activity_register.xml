@@ -168,13 +168,6 @@
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
-            <!--
-            <Spinner
-                android:id="@+id/register_form_accounttype"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            -->
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -186,7 +179,6 @@
                 android:id="@+id/register_form_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="next"
                 android:text="@string/next" />
 
             <ImageView

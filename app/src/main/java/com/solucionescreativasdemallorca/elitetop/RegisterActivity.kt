@@ -2,9 +2,9 @@ package com.solucionescreativasdemallorca.elitetop
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -29,9 +29,15 @@ class RegisterActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             textViewAccountType.setAdapter(adapter)
         }
+
+        // On Clicks
+        val btn: Button = findViewById(R.id.register_form_btn)
+        btn.setOnClickListener {
+            next()
+        }
     }
 
-    fun next(view: View) {
+    private fun next() {
         val email: TextInputEditText = findViewById(R.id.register_form_email_material_text)
         val nickname: TextInputEditText = findViewById(R.id.register_form_nickname_material_text)
         val password: TextInputEditText = findViewById(R.id.register_form_password_material_text)
@@ -44,11 +50,7 @@ class RegisterActivity : AppCompatActivity() {
         if (email.text.isNullOrBlank() || nickname.text.isNullOrBlank() || password.text.isNullOrBlank() || repeatPassword.text.isNullOrBlank() || phone.text.isNullOrBlank() || textViewAccountType.text.toString()
                 .isNullOrBlank()
         ) {
-            Toast.makeText(
-                applicationContext,
-                "¡No debe haber ningún campo vacío!",
-                Toast.LENGTH_SHORT
-            )?.show()
+            showMessage("¡No debe haber ningún campo vacío!")
         } else {
             if (password.text?.toString() == repeatPassword.text?.toString()) {
                 val bundle = Bundle()
@@ -56,18 +58,22 @@ class RegisterActivity : AppCompatActivity() {
                 bundle.putString("nickname", nickname.text.toString())
                 bundle.putString("password", password.text.toString())
                 bundle.putString("phone", phone.text.toString())
-                bundle.putString("accounttype", textViewAccountType.text.toString())
+                bundle.putString("accountType", textViewAccountType.text.toString())
                 startActivity(
                     Intent(this, CompleteRegisterActivity::class.java).putExtras(bundle)
                 )
                 finish()
             } else {
-                Toast.makeText(
-                    applicationContext,
-                    "¡Las contraseñas deben coincidir!",
-                    Toast.LENGTH_SHORT
-                )?.show()
+                showMessage("¡Las contraseñas deben coincidir!")
             }
         }
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(
+            applicationContext,
+            message,
+            Toast.LENGTH_SHORT
+        )?.show()
     }
 }
