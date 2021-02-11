@@ -54,16 +54,25 @@ dependencies {
 
     // Google Firebase
     implementation platform('com.google.firebase:firebase-bom:26.4.0')
+
     // Java Firebase
     implementation 'com.google.firebase:firebase-analytics:18.0.2'
     implementation 'com.google.firebase:firebase-auth:20.0.2'
     implementation 'com.google.firebase:firebase-firestore:22.0.2'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
+    implementation 'com.google.firebase:firebase-config:20.0.3'
+    implementation 'com.google.firebase:firebase-inappmessaging-display:19.1.4'
     implementation 'com.google.firebase:firebase-crashlytics:17.3.1'
     implementation 'com.google.firebase:firebase-perf:19.1.0'
+    implementation 'com.google.firebase:firebase-ads:19.7.0'
+
     // Kotlin Firebase
     implementation 'com.google.firebase:firebase-analytics-ktx:18.0.2'
     implementation 'com.google.firebase:firebase-auth-ktx:20.0.2'
     implementation 'com.google.firebase:firebase-firestore-ktx:22.0.2'
+    implementation 'com.google.firebase:firebase-messaging-ktx:21.0.1'
+    implementation 'com.google.firebase:firebase-config-ktx:20.0.3'
+    implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:19.1.4'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:17.3.1'
     implementation 'com.google.firebase:firebase-perf-ktx:19.1.0'
 }
