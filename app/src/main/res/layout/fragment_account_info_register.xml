@@ -4,31 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdditionalInfoRegisterActivity">
-
-    <TextView
-        android:id="@+id/additionalinforegister_intro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/additionalinforegister"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02" />
+    tools:context=".AccountInfoRegisterFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/additionalinforegister_intro"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/additionalinforegister_form"
@@ -40,9 +24,8 @@
                 android:id="@+id/additionalinforegister_form_sports_material"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:hint="@string/sports"
-                app:endIconMode="clear_text"
                 android:orientation="horizontal"
+                app:endIconMode="clear_text"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_directions_run_24">
 
@@ -50,6 +33,7 @@
                     android:id="@+id/additionalinforegister_form_sports_material_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:hint="@string/sports"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>

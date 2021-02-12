@@ -4,31 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CompleteRegisterActivity">
-
-    <TextView
-        android:id="@+id/completeregister_intro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/completeregister"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02" />
+    tools:context=".CompleteRegisterFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/completeregister_intro"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/completeregister_form"
@@ -40,9 +24,8 @@
                 android:id="@+id/completeregister_form_name_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/name"
-                app:endIconMode="clear_text"
                 android:orientation="horizontal"
+                app:endIconMode="clear_text"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_person_24">
 
@@ -50,6 +33,7 @@
                     android:id="@+id/completeregister_form_name_material_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/name"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -64,9 +48,8 @@
                 android:id="@+id/completeregister_form_surnames_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/surnames"
-                app:endIconMode="clear_text"
                 android:orientation="horizontal"
+                app:endIconMode="clear_text"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_person_24">
 
@@ -74,6 +57,7 @@
                     android:id="@+id/completeregister_form_surnames_material_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/surnames"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -88,7 +72,6 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/genre"
                 android:orientation="horizontal"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_people_outline_24">
@@ -97,6 +80,7 @@
                     android:id="@+id/completeregister_form_genre_material_dropdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/genre"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -112,7 +96,6 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/nationality"
                 android:orientation="horizontal"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_flag_24">
@@ -121,6 +104,7 @@
                     android:id="@+id/completeregister_form_nationality_material_dropdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/nationality"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -135,7 +119,6 @@
                 android:id="@+id/completeregister_form_birthdate_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/birthdate"
                 android:orientation="horizontal"
                 app:startIconContentDescription="UserIcon"
                 app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
@@ -144,8 +127,7 @@
                     android:id="@+id/completeregister_form_birthdate_material_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="false" />
+                    android:hint="@string/birthDate" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

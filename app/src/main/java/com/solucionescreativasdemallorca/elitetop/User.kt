@@ -1,14 +1,15 @@
 package com.solucionescreativasdemallorca.elitetop
 
-interface User {
-    val email: String
-    val nickname: String
-    val password: String
-    val phone: String
-    val accountType: String
-    val name: String
-    val surnames: String
-    val birth: String
-    val genre: String
-    val nationality: String
-}
+data class User(
+    var email: String,
+    var nickname: String,
+    var password: String,
+    var phone: String,
+    var accountType: String,
+    var name: String,
+    var surnames: String,
+    var birth: String,
+    var genre: String,
+    var nationality: String,
+    var sports: String
+)

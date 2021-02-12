@@ -4,9 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
@@ -14,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.ktx.Firebase
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var firebaseAuth: FirebaseAuth
@@ -25,6 +24,8 @@ class LoginActivity : AppCompatActivity() {
 
         // Hide top app bar (not android top bar)
         supportActionBar?.hide()
+
+        FirebaseApp.initializeApp(this)
 
         // Firebase Analytics
         firebaseAnalytics = Firebase.analytics
@@ -89,13 +90,5 @@ class LoginActivity : AppCompatActivity() {
 
     private fun navigateRegister() {
         startActivity(Intent(this, RegisterActivity::class.java))
-    }
-
-    private fun showMessage(message: String) {
-        Toast.makeText(
-            applicationContext,
-            message,
-            Toast.LENGTH_SHORT
-        )?.show()
     }
 }

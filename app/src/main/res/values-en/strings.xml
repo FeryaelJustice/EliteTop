@@ -3,15 +3,15 @@
     <string name="email">Email</string>
     <string name="nickname">Nickname</string>
     <string name="password">Password</string>
-    <string name="repeatpassword">Repeat password</string>
+    <string name="repeatPassword">Repeat password</string>
     <string name="phone">Phone number</string>
-    <string name="infoaccounttype">Select your account type</string>
+    <string name="accountType">Select your account type</string>
 
     <string name="name">Name</string>
     <string name="surnames">Surnames</string>
     <string name="genre">Select your genre</string>
     <string name="nationality">Select your nationality</string>
-    <string name="birthdate">Birthdate</string>
+    <string name="birthDate">Birthdate</string>
 
     <string name="next">Next</string>
 
@@ -29,10 +29,8 @@
 
     <string name="login_intro">Welcome to Elite Top!</string>
     <string name="login">Login</string>
-    <string name="login_inforegister">Still don\'t have an account? Register here.</string>
-    <string name="login_recoveraccount">Forgot your password? Recover your account.</string>
+    <string name="login_infoRegister">Still don\'t have an account? Register here.</string>
+    <string name="login_recoverAccount">Forgot your password? Recover your account.</string>
 
     <string name="register">Register</string>
-    <string name="completeregister">Complete register</string>
-    <string name="additionalinforegister">Finalize register</string>
 </resources>

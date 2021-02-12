@@ -117,8 +117,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="@string/login_recoveraccount"
-            android:textSize="10dp" />
+            android:text="@string/login_recoverAccount"
+            android:textSize="12sp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -130,7 +130,8 @@
             android:id="@+id/login_form_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_inforegister" />
+            android:text="@string/login_infoRegister"
+            android:textSize="14sp" />
     </LinearLayout>
 
 
