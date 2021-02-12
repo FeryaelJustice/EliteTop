@@ -2,6 +2,7 @@ package com.solucionescreativasdemallorca.elitetop
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,8 @@ class AccountInfoRegisterFragment : BaseFragment() {
         val sports: TextInputEditText =
             view.findViewById(R.id.additionalinforegister_form_sports_material_text)
         (activity as RegisterActivity).user.sports = sports.text.toString()
+
+        Log.d("user", (activity as RegisterActivity).user.toString())
 
         FirebaseAuth.getInstance()
             .createUserWithEmailAndPassword(
