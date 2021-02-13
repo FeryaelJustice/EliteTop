@@ -39,11 +39,11 @@ class RecoverPasswordActivity : BaseActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         showMessage("Email enviado a tu correo")
+                        finish()
                     } else {
                         showMessage("Error al enviar el correo, no existe esta cuenta.")
                     }
                 }
-            finish()
         }
 
     }
