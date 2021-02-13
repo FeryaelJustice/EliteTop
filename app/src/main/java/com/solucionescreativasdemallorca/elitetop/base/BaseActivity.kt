@@ -1,4 +1,4 @@
-package com.solucionescreativasdemallorca.elitetop
+package com.solucionescreativasdemallorca.elitetop.base
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity

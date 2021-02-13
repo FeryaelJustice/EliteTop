@@ -1,4 +1,4 @@
-package com.solucionescreativasdemallorca.elitetop
+package com.solucionescreativasdemallorca.elitetop.dataclass
 
 data class User(
     var email: String,

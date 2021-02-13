@@ -1,4 +1,4 @@
-package com.solucionescreativasdemallorca.elitetop
+package com.solucionescreativasdemallorca.elitetop.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,10 @@ import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.ktx.Firebase
+import com.solucionescreativasdemallorca.elitetop.MainActivity
+import com.solucionescreativasdemallorca.elitetop.R
+import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
+import com.solucionescreativasdemallorca.elitetop.register.RegisterActivity
 
 
 class LoginActivity : BaseActivity() {

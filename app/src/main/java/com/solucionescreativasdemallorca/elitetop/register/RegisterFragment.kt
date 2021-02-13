@@ -1,4 +1,4 @@
-package com.solucionescreativasdemallorca.elitetop
+package com.solucionescreativasdemallorca.elitetop.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
+import com.solucionescreativasdemallorca.elitetop.R
+import com.solucionescreativasdemallorca.elitetop.base.BaseFragment
 
 class RegisterFragment : BaseFragment() {
 

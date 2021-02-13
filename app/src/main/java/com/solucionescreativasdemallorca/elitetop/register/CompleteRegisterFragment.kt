@@ -1,4 +1,4 @@
-package com.solucionescreativasdemallorca.elitetop
+package com.solucionescreativasdemallorca.elitetop.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.solucionescreativasdemallorca.elitetop.R
+import com.solucionescreativasdemallorca.elitetop.base.BaseFragment
 import java.util.*
 import kotlin.collections.ArrayList
 

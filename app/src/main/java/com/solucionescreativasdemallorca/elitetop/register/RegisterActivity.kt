@@ -1,6 +1,9 @@
-package com.solucionescreativasdemallorca.elitetop
+package com.solucionescreativasdemallorca.elitetop.register
 
 import android.os.Bundle
+import com.solucionescreativasdemallorca.elitetop.R
+import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
+import com.solucionescreativasdemallorca.elitetop.dataclass.User
 
 class RegisterActivity : BaseActivity() {
 
