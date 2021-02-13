@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EliteTop">
-
+        <activity android:name=".recoverpassword.RecoverPasswordActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />

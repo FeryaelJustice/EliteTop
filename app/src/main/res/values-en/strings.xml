@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email">Email</string>
-    <string name="nickname">Nickname</string>
-    <string name="password">Password</string>
-    <string name="repeatPassword">Repeat password</string>
-    <string name="phone">Phone number</string>
-    <string name="accountType">Select your account type</string>
 
-    <string name="name">Name</string>
-    <string name="surnames">Surnames</string>
-    <string name="genre">Select your genre</string>
-    <string name="nationality">Select your nationality</string>
-    <string name="birthDate">Birthdate</string>
+    <!-- Utilities -->
 
+    <string name="intro">Welcome to Elite Top!</string>
     <string name="next">Next</string>
+    <string name="before">Before</string>
 
-    <string name="sports">Sports</string>
+    <!-- Data Arrays -->
 
     <string-array name="accountType_array">
         <item name="accountType-trainer">Trainer</item>
@@ -27,10 +19,30 @@
         <item name="genres_woman">Woman</item>
     </string-array>
 
-    <string name="login_intro">Welcome to Elite Top!</string>
+    <!-- Login Activity -->
     <string name="login">Login</string>
     <string name="login_infoRegister">Still don\'t have an account? Register here.</string>
     <string name="login_recoverAccount">Forgot your password? Recover your account.</string>
 
+    <!-- Register Activity -->
     <string name="register">Register</string>
+    <!-- First -->
+    <string name="email">Email</string>
+    <string name="nickname">Nickname</string>
+    <string name="password">Password</string>
+    <string name="repeatPassword">Repeat password</string>
+    <string name="phone">Phone number</string>
+    <string name="accountType">Select your account type</string>
+    <!-- Second -->
+    <string name="name">Name</string>
+    <string name="surnames">Surnames</string>
+    <string name="genre">Select your genre</string>
+    <string name="nationality">Select your nationality</string>
+    <string name="birthDate">Birthdate</string>
+    <!-- Third -->
+    <string name="sports">Sports</string>
+
+    <!-- Recover Password Activity -->
+    <string name="recoverPassword_intro">Recover password</string>
+    <string name="sendEmail">Send email</string>
 </resources>

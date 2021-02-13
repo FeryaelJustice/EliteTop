@@ -14,6 +14,7 @@ import com.google.firebase.ktx.Firebase
 import com.solucionescreativasdemallorca.elitetop.MainActivity
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
+import com.solucionescreativasdemallorca.elitetop.recoverpassword.RecoverPasswordActivity
 import com.solucionescreativasdemallorca.elitetop.register.RegisterActivity
 
 
@@ -29,6 +30,7 @@ class LoginActivity : BaseActivity() {
         // Hide top app bar (not android top bar)
         supportActionBar?.hide()
 
+        // INITIALIZE FIREBASE IN ALL APP (VERY IMPORTANT)
         FirebaseApp.initializeApp(this)
 
         // Firebase Analytics
@@ -89,7 +91,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun recoverAccount() {
-        showMessage("¡Recuperar contraseña!")
+        startActivity(Intent(this, RecoverPasswordActivity::class.java))
     }
 
     private fun navigateRegister() {

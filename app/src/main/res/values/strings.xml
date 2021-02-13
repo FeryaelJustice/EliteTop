@@ -4,22 +4,11 @@
 
     <!-- Utilities -->
 
-    <string name="email">Correo electrónico</string>
-    <string name="nickname">Nombre de usuario</string>
-    <string name="password">Contraseña</string>
-    <string name="repeatPassword">Repetir contraseña</string>
-    <string name="phone">Numero de teléfono</string>
-    <string name="accountType">Selecciona tu tipo de cuenta</string>
-
-    <string name="name">Nombre</string>
-    <string name="surnames">Apellidos</string>
-    <string name="genre">Selecciona tu sexo</string>
-    <string name="nationality">Selecciona tu nacionalidad</string>
-    <string name="birthDate">Fecha de nacimiento</string>
-
+    <string name="intro">¡Bienvenido a Elite Top!</string>
     <string name="next">Siguiente</string>
+    <string name="before">Anterior</string>
 
-    <string name="sports">Deportes</string>
+    <!-- Data arrays -->
 
     <string-array name="accountType_array">
         <item name="accountType-trainer">Entrenador</item>
@@ -32,11 +21,31 @@
     </string-array>
 
     <!-- Login Activity -->
-    <string name="login_intro">¡Bienvenido a Elite Top!</string>
     <string name="login">Iniciar Sesión</string>
     <string name="login_recoverAccount">¿Has olvidado tu contraseña? Recupera tu cuenta.</string>
     <string name="login_infoRegister">¿Aún no tienes una cuenta? Regístrate aquí.</string>
 
     <!-- Register Activity -->
     <string name="register">Regístrate</string>
+    <!-- First -->
+    <string name="email">Correo electrónico</string>
+    <string name="nickname">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="repeatPassword">Repetir contraseña</string>
+    <string name="phone">Numero de teléfono</string>
+    <string name="accountType">Selecciona tu tipo de cuenta</string>
+    <!-- Second -->
+    <string name="name">Nombre</string>
+    <string name="surnames">Apellidos</string>
+    <string name="genre">Selecciona tu sexo</string>
+    <string name="nationality">Selecciona tu nacionalidad</string>
+    <string name="birthDate">Fecha de nacimiento</string>
+    <!-- Third -->
+    <string name="sports">Deportes</string>
+
+    <!-- Recover Password Activity -->
+    <string name="recoverPassword_intro">Recuperar contraseña</string>
+    <string name="sendEmail">Enviar correo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
