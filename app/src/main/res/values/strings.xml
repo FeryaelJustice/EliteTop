@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">EliteTop</string>
-    <string name="divider" translatable="false">divider</string>
+    <string name="divider" translatable="false">Divider</string>
+    <string name="logo" translatable="false">Logo</string>
 
     <!-- Utilities -->
 
@@ -46,6 +47,6 @@
     <!-- Recover Password Activity -->
     <string name="recoverPassword_intro">Recuperar contraseña</string>
     <string name="sendEmail">Enviar correo</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hola fragmento blanco</string>
+
 </resources>

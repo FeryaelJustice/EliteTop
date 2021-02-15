@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
-import androidx.fragment.app.Fragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -75,15 +74,6 @@ class CompleteRegisterFragment : BaseFragment() {
         }
 
         return view
-    }
-
-    override fun onDestroyView() {
-        val childFragment: Fragment? =
-            parentFragmentManager.findFragmentByTag("CompleteRegisterFragment")
-        childFragment?.let {
-            parentFragmentManager.beginTransaction().remove(it).commit()
-        }
-        super.onDestroyView()
     }
 
     private fun pickDate(view: View) {

@@ -45,4 +45,5 @@
     <!-- Recover Password Activity -->
     <string name="recoverPassword_intro">Recover password</string>
     <string name="sendEmail">Send email</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -42,15 +41,6 @@ class AccountInfoRegisterFragment : BaseFragment() {
         }
 
         return view
-    }
-
-    override fun onDestroyView() {
-        val childFragment: Fragment? =
-            parentFragmentManager.findFragmentByTag("AccountInfoRegisterFragment")
-        childFragment?.let {
-            parentFragmentManager.beginTransaction().remove(it).commit()
-        }
-        super.onDestroyView()
     }
 
     private fun register(view: View) {

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
-import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseFragment
@@ -42,13 +41,14 @@ class RegisterFragment : BaseFragment() {
         return view
     }
 
+    /*
     override fun onDestroyView() {
         val childFragment: Fragment? = parentFragmentManager.findFragmentByTag("RegisterFragment")
         childFragment?.let {
             parentFragmentManager.beginTransaction().remove(it).commit()
         }
         super.onDestroyView()
-    }
+    }*/
 
     private fun next(view: View) {
         val email: TextInputEditText = view.findViewById(R.id.register_form_email_material_text)
