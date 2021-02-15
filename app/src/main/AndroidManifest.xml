@@ -9,10 +9,11 @@
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EliteTop">
-        <activity android:name=".recoverpassword.RecoverPasswordActivity"></activity>
+        <activity
+            android:name=".recoverpassword.RecoverPasswordActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
