@@ -12,9 +12,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.solucionescreativasdemallorca.elitetop.MainActivity
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseFragment
+import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
 
 
 class AccountInfoRegisterFragment : BaseFragment() {
@@ -56,14 +56,19 @@ class AccountInfoRegisterFragment : BaseFragment() {
                     val document: DocumentReference =
                         db.collection("users").document(currentFirebaseUser?.uid.toString())
                     document.set((activity as RegisterActivity).user).addOnCompleteListener {
-                        (activity as RegisterActivity).startActivity(
-                            Intent(
-                                activity,
-                                MainActivity::class.java
-                            )
-                        )
-                        (activity as RegisterActivity).finish()
-
+                        val accountType: String = (activity as RegisterActivity).user.accountType
+                        accountType.let {
+                            if (accountType == "Atleta") {
+                                (activity as RegisterActivity).startActivity(
+                                    Intent(
+                                        activity,
+                                        AthleteActivity::class.java
+                                    )
+                                )
+                            } else {
+                                showMessage("Cuenta de entrenador")
+                            }
+                        }
                     }
                 } else {
                     showMessage("Error al registrarse")

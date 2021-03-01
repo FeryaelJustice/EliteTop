@@ -2,6 +2,7 @@ package com.solucionescreativasdemallorca.elitetop.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
@@ -9,11 +10,13 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import com.google.firebase.ktx.Firebase
-import com.solucionescreativasdemallorca.elitetop.MainActivity
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
+import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
 import com.solucionescreativasdemallorca.elitetop.recoverpassword.RecoverPasswordActivity
 import com.solucionescreativasdemallorca.elitetop.register.RegisterActivity
 
@@ -62,7 +65,7 @@ class LoginActivity : BaseActivity() {
 
         // Check if user is signed in (non-null) and update UI accordingly.
         firebaseAuth.currentUser.let {
-            val currentUser: FirebaseUser? = it
+            //val currentUser: FirebaseUser? = it
         }
     }
 
@@ -79,10 +82,32 @@ class LoginActivity : BaseActivity() {
         } else {
             FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(email.text.toString(), password.text.toString())
-                .addOnCompleteListener {
+                .addOnCompleteListener { it ->
                     if (it.isSuccessful) {
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
+                        val db = FirebaseFirestore.getInstance()
+                        val document: DocumentReference =
+                            db.collection("users")
+                                .document(FirebaseAuth.getInstance().currentUser?.uid.toString())
+                        val source = Source.DEFAULT
+                        document.get(source).addOnSuccessListener { doc ->
+                            if (doc != null) {
+                                val accountType: String =
+                                    doc.data?.get("accountType").toString()
+                                accountType.let { type ->
+                                    if (type == "Atleta") {
+                                        startActivity(Intent(this, AthleteActivity::class.java))
+                                        finish()
+                                    } else {
+                                        showMessage("Cuenta de entrenador")
+                                    }
+
+                                }
+                            } else {
+                                Log.d("TAG", "No such document")
+                            }
+                        }.addOnFailureListener { exception ->
+                            Log.d("TAG", "get failed with ", exception)
+                        }
                     } else {
                         showMessage("Error al iniciar sesión")
                     }

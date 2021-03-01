@@ -1,12 +1,13 @@
-package com.solucionescreativasdemallorca.elitetop
+package com.solucionescreativasdemallorca.elitetop.main.athlete
 
 import android.os.Bundle
+import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
 
-class MainActivity : BaseActivity() {
+class AthleteActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_athlete)
 
         // Hide top app bar (not android top bar)
         supportActionBar?.hide()

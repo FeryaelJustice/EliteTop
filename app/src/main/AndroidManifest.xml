@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EliteTop">
         <activity
-            android:name=".recoverpassword.RecoverPasswordActivity"
+            android:name=".main.athlete.AthleteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".recoverpassword.RecoverPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".register.RegisterActivity"
