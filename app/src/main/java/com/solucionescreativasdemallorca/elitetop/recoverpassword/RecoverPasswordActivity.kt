@@ -16,8 +16,6 @@ class RecoverPasswordActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recover_password)
 
-        // Hide top app bar (not android top bar)
-        supportActionBar?.hide()
 
         // On Clicks
         val btn: Button = findViewById(R.id.recoverPassword_form_btn)

@@ -30,9 +30,6 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Hide top app bar (not android top bar)
-        supportActionBar?.hide()
-
         // INITIALIZE FIREBASE IN ALL APP (VERY IMPORTANT)
         FirebaseApp.initializeApp(this)
 

@@ -12,9 +12,6 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        // Hide top app bar (not android top bar)
-        supportActionBar?.hide()
-
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, LoginActivity::class.java))
             overridePendingTransition(R.anim.fadein, R.anim.fadeout)
