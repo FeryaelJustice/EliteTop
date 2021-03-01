@@ -26,7 +26,7 @@ class RecoverPasswordActivity : BaseActivity() {
         }
     }
 
-    fun sendRecoverMail() {
+    private fun sendRecoverMail() {
         val email: TextInputEditText = findViewById(R.id.recoverPassword_form_email_material_text)
         email.let {
             val firebaseAuth: FirebaseAuth = Firebase.auth

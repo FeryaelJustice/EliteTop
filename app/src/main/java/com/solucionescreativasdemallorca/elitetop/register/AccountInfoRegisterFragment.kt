@@ -12,9 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
 import com.solucionescreativasdemallorca.elitetop.MainActivity
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseFragment
@@ -22,17 +19,12 @@ import com.solucionescreativasdemallorca.elitetop.base.BaseFragment
 
 class AccountInfoRegisterFragment : BaseFragment() {
 
-    lateinit var storage: FirebaseStorage
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_account_info_register, container, false)
-
-        storage = Firebase.storage
-        var storageRef = storage.reference
 
         // On Clicks
         val btn: Button = view.findViewById(R.id.additionalinforegister_form_btn)
