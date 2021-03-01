@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_nav_menu_athlete_item_entrenamiento"
+        android:title="@string/bottom_nav_menu_item_training" />
+    <item
+        android:id="@+id/bottom_nav_menu_athlete_item_dieta"
+        android:title="@string/bottom_nav_menu_item_dieta" />
+    <item
+        android:id="@+id/bottom_nav_menu_athlete_item_anadirevento"
+        android:title="@string/bottom_nav_menu_item_anadirevento" />
+    <item
+        android:id="@+id/bottom_nav_menu_athlete_item_resultados"
+        android:title="@string/bottom_nav_menu_item_resultados" />
+    <item
+        android:id="@+id/bottom_nav_menu_athlete_item_perfil"
+        android:title="@string/bottom_nav_menu_item_perfil" />
+</menu>

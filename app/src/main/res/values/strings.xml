@@ -47,6 +47,12 @@
     <!-- Recover Password Activity -->
     <string name="recoverPassword_intro">Recuperar contraseña</string>
     <string name="sendEmail">Enviar correo</string>
-    <string name="hello_blank_fragment">Hola fragmento blanco</string>
+
+    <!-- Bottom Navigation -->
+    <string name="bottom_nav_menu_item_training">Training</string>
+    <string name="bottom_nav_menu_item_dieta">Dieta</string>
+    <string name="bottom_nav_menu_item_anadirevento">Añadir evento</string>
+    <string name="bottom_nav_menu_item_resultados">Resultados</string>
+    <string name="bottom_nav_menu_item_perfil">Perfil</string>
 
 </resources>
