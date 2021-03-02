@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EliteTop">
         <activity
+            android:name=".main.trainer.TrainerActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".main.athlete.AthleteActivity"
             android:screenOrientation="portrait" />
         <activity

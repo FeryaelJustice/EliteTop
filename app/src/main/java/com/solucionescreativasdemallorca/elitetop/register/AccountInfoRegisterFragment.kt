@@ -2,7 +2,6 @@ package com.solucionescreativasdemallorca.elitetop.register
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,18 +39,18 @@ class AccountInfoRegisterFragment : BaseFragment() {
             view.findViewById(R.id.additionalinforegister_form_sports_material_text)
         (activity as RegisterActivity).user.sports = sports.text.toString()
 
-        Log.d("usuario", (activity as RegisterActivity).user.toString())
+        // Firebase Authentication
+        val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-        FirebaseAuth.getInstance()
-            .createUserWithEmailAndPassword(
-                (activity as RegisterActivity).user.email,
-                (activity as RegisterActivity).user.password
-            )
+        firebaseAuth.createUserWithEmailAndPassword(
+            (activity as RegisterActivity).user.email,
+            (activity as RegisterActivity).user.password
+        )
             .addOnCompleteListener { it ->
                 if (it.isSuccessful) {
                     // Add a new document with a new generated User
                     val currentFirebaseUser: FirebaseUser? =
-                        FirebaseAuth.getInstance().currentUser
+                        firebaseAuth.currentUser
                     val db = FirebaseFirestore.getInstance()
                     val document: DocumentReference =
                         db.collection("users").document(currentFirebaseUser?.uid.toString())

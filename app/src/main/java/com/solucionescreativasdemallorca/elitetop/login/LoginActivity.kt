@@ -42,6 +42,11 @@ class LoginActivity : BaseActivity() {
         // Firebase Authentication
         firebaseAuth = FirebaseAuth.getInstance()
 
+        // Autologin if firebase auth logged and not signout
+        if (firebaseAuth.currentUser != null) {
+            checkLoginAccountType(firebaseAuth)
+        }
+
         // On Clicks
         val btn: Button = findViewById(R.id.login_form_btn)
         btn.setOnClickListener {
@@ -54,15 +59,6 @@ class LoginActivity : BaseActivity() {
         val register: TextView = findViewById(R.id.login_form_register)
         register.setOnClickListener {
             navigateRegister()
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        // Check if user is signed in (non-null) and update UI accordingly.
-        firebaseAuth.currentUser.let {
-            //val currentUser: FirebaseUser? = it
         }
     }
 
@@ -81,34 +77,38 @@ class LoginActivity : BaseActivity() {
                 .signInWithEmailAndPassword(email.text.toString(), password.text.toString())
                 .addOnCompleteListener { it ->
                     if (it.isSuccessful) {
-                        val db = FirebaseFirestore.getInstance()
-                        val document: DocumentReference =
-                            db.collection("users")
-                                .document(FirebaseAuth.getInstance().currentUser?.uid.toString())
-                        val source = Source.DEFAULT
-                        document.get(source).addOnSuccessListener { doc ->
-                            if (doc != null) {
-                                val accountType: String =
-                                    doc.data?.get("accountType").toString()
-                                accountType.let { type ->
-                                    if (type == "Atleta") {
-                                        startActivity(Intent(this, AthleteActivity::class.java))
-                                        finish()
-                                    } else {
-                                        showMessage("Cuenta de entrenador")
-                                    }
-
-                                }
-                            } else {
-                                Log.d("TAG", "No such document")
-                            }
-                        }.addOnFailureListener { exception ->
-                            Log.d("TAG", "get failed with ", exception)
-                        }
+                        checkLoginAccountType(firebaseAuth)
                     } else {
                         showMessage("Error al iniciar sesión")
                     }
                 }
+        }
+    }
+
+    private fun checkLoginAccountType(firebaseAuth: FirebaseAuth) {
+        val db = FirebaseFirestore.getInstance()
+        val document: DocumentReference =
+            db.collection("users")
+                .document(firebaseAuth.currentUser?.uid.toString())
+        val source = Source.DEFAULT
+        document.get(source).addOnSuccessListener { doc ->
+            if (doc != null) {
+                val accountType: String =
+                    doc.data?.get("accountType").toString()
+                accountType.let { type ->
+                    if (type == "Atleta") {
+                        startActivity(Intent(this, AthleteActivity::class.java))
+                        finish()
+                    } else {
+                        showMessage("Cuenta de entrenador")
+                    }
+
+                }
+            } else {
+                Log.d("TAG", "No such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d("TAG", "get failed with ", exception)
         }
     }
 
