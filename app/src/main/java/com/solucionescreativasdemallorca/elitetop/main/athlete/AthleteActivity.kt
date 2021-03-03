@@ -28,11 +28,6 @@ class AthleteActivity : BaseActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        signOut()
-    }
-
     private fun signOut(): Boolean {
         return try {
             FirebaseAuth.getInstance().signOut()
