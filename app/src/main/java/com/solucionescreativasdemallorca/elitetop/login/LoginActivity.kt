@@ -14,9 +14,14 @@ import com.solucionescreativasdemallorca.elitetop.register.RegisterActivity
 
 class LoginActivity : BaseActivity() {
 
+    lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // Get Auth
+        auth = FirebaseAuth.getInstance()
 
         // On Clicks
         val btn: Button = findViewById(R.id.login_form_btn)
@@ -39,8 +44,7 @@ class LoginActivity : BaseActivity() {
         if (email.text.isNullOrBlank() || password.text.isNullOrBlank()) {
             showMessage("¡No debe haber ningún campo vacío!")
         } else {
-            FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+            auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
                 .addOnCompleteListener { it ->
                     if (it.isSuccessful) {
                         checkLoginAccountType(FirebaseAuth.getInstance())

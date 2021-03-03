@@ -18,12 +18,17 @@ import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
 
 class AccountInfoRegisterFragment : BaseFragment() {
 
+    lateinit var auth: FirebaseAuth
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_account_info_register, container, false)
+
+        // Get Auth
+        auth = FirebaseAuth.getInstance()
 
         // On Clicks
         val btn: Button = view.findViewById(R.id.additionalinforegister_form_btn)
@@ -39,10 +44,7 @@ class AccountInfoRegisterFragment : BaseFragment() {
             view.findViewById(R.id.additionalinforegister_form_sports_material_text)
         (activity as RegisterActivity).user.sports = sports.text.toString()
 
-        // Firebase Authentication
-        val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-
-        firebaseAuth.createUserWithEmailAndPassword(
+        auth.createUserWithEmailAndPassword(
             (activity as RegisterActivity).user.email,
             (activity as RegisterActivity).user.password
         )
@@ -50,7 +52,7 @@ class AccountInfoRegisterFragment : BaseFragment() {
                 if (it.isSuccessful) {
                     // Add a new document with a new generated User
                     val currentFirebaseUser: FirebaseUser? =
-                        firebaseAuth.currentUser
+                        auth.currentUser
                     val db = FirebaseFirestore.getInstance()
                     val document: DocumentReference =
                         db.collection("users").document(currentFirebaseUser?.uid.toString())
