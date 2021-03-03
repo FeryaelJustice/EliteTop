@@ -2,50 +2,21 @@ package com.solucionescreativasdemallorca.elitetop.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.FirebaseApp
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Source
-import com.google.firebase.ktx.Firebase
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
-import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
 import com.solucionescreativasdemallorca.elitetop.recoverpassword.RecoverPasswordActivity
 import com.solucionescreativasdemallorca.elitetop.register.RegisterActivity
 
 
 class LoginActivity : BaseActivity() {
 
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
-    private lateinit var firebaseAuth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        // INITIALIZE FIREBASE IN ALL APP (VERY IMPORTANT)
-        FirebaseApp.initializeApp(this)
-
-        // Firebase Analytics
-        firebaseAnalytics = Firebase.analytics
-        val bundle = Bundle()
-        bundle.putString("message", "Integración de Firebase completa")
-        firebaseAnalytics.logEvent("InitScreen", bundle)
-
-        // Firebase Authentication
-        firebaseAuth = FirebaseAuth.getInstance()
-
-        // Autologin if firebase auth logged and not signout
-        if (firebaseAuth.currentUser != null) {
-            checkLoginAccountType(firebaseAuth)
-        }
 
         // On Clicks
         val btn: Button = findViewById(R.id.login_form_btn)
@@ -62,11 +33,6 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        FirebaseAuth.getInstance().signOut()
-    }
-
     private fun login() {
         val email: TextInputEditText = findViewById(R.id.login_form_email_material_text)
         val password: TextInputEditText = findViewById(R.id.login_form_password_material_text)
@@ -77,38 +43,11 @@ class LoginActivity : BaseActivity() {
                 .signInWithEmailAndPassword(email.text.toString(), password.text.toString())
                 .addOnCompleteListener { it ->
                     if (it.isSuccessful) {
-                        checkLoginAccountType(firebaseAuth)
+                        checkLoginAccountType(FirebaseAuth.getInstance())
                     } else {
                         showMessage("Error al iniciar sesión")
                     }
                 }
-        }
-    }
-
-    private fun checkLoginAccountType(firebaseAuth: FirebaseAuth) {
-        val db = FirebaseFirestore.getInstance()
-        val document: DocumentReference =
-            db.collection("users")
-                .document(firebaseAuth.currentUser?.uid.toString())
-        val source = Source.DEFAULT
-        document.get(source).addOnSuccessListener { doc ->
-            if (doc != null) {
-                val accountType: String =
-                    doc.data?.get("accountType").toString()
-                accountType.let { type ->
-                    if (type == "Atleta") {
-                        startActivity(Intent(this, AthleteActivity::class.java))
-                        finish()
-                    } else {
-                        showMessage("Cuenta de entrenador")
-                    }
-
-                }
-            } else {
-                Log.d("TAG", "No such document")
-            }
-        }.addOnFailureListener { exception ->
-            Log.d("TAG", "get failed with ", exception)
         }
     }
 

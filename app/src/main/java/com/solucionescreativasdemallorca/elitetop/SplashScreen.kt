@@ -4,18 +4,41 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.FirebaseApp
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
 import com.solucionescreativasdemallorca.elitetop.login.LoginActivity
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreen : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
-            overridePendingTransition(R.anim.fadein, R.anim.fadeout)
-            finish()
-        }, 1000)
+        // INITIALIZE FIREBASE IN ALL APP (VERY IMPORTANT)
+        FirebaseApp.initializeApp(this)
+
+        // Firebase Analytics
+        firebaseAnalytics = Firebase.analytics
+
+        val bundle = Bundle()
+        bundle.putString("message", "Integración de Firebase completa")
+        firebaseAnalytics.logEvent("InitScreen", bundle)
+
+        // Firebase Authentication
+        val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+
+        // Autologin if firebase auth logged and not signout
+        if (firebaseAuth.currentUser != null) {
+            checkLoginAccountType(firebaseAuth)
+        } else {
+            Handler(Looper.getMainLooper()).postDelayed({
+                startActivity(Intent(this, LoginActivity::class.java))
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout)
+                finish()
+            }, 1000)
+        }
+
     }
 }
