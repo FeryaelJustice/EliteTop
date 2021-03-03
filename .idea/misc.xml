@@ -10,7 +10,13 @@
         <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/drawable/ic_launcher_background.xml" value="0.28703703703703703" />
         <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/layout/activity_athlete.xml" value="0.25" />
         <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/layout/activity_main.xml" value="0.28940217391304346" />
+        <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/layout/activity_register.xml" value="0.2015625" />
         <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/layout/activity_trainer.xml" value="0.28306159420289856" />
+        <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/layout/fragment_athlete_anadir_evento.xml" value="0.2015625" />
+        <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/layout/fragment_athlete_dieta.xml" value="0.2015625" />
+        <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/layout/fragment_athlete_entrenamiento.xml" value="0.2015625" />
+        <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/layout/fragment_athlete_perfil.xml" value="0.1875" />
+        <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/layout/fragment_athlete_resultados.xml" value="0.2015625" />
         <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/menu/bottom_nav_menu_athlete.xml" value="0.36666666666666664" />
         <entry key="..\:/Desktop/Stuff/Professional/Business/SolucionesCreativasDeMallorca/EliteTop/Develop/Android/EliteTop/app/src/main/res/menu/bottom_nav_menu_item.xml" value="0.36666666666666664" />
       </map>
