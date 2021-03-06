@@ -1,14 +1,11 @@
 package com.solucionescreativasdemallorca.elitetop.main.athlete
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
-import com.solucionescreativasdemallorca.elitetop.login.LoginActivity
 import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.anadirevento.AthleteAnadirEventoFragment
 import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.dieta.AthleteDietaFragment
 import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.entrenamiento.AthleteEntrenamientoFragment
@@ -26,13 +23,13 @@ class AthleteActivity : BaseActivity() {
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
 
-        val signOutButton: ImageView = findViewById(R.id.athlete_toolbarRightButton)
+        /*val signOutButton: ImageView = findViewById(R.id.athlete_toolbarRightButton)
         signOutButton.setOnClickListener {
             if (signOut()) {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-        }
+        }*/
 
         bottomNavigation = findViewById(R.id.athlete_bottom_nav_view)
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
