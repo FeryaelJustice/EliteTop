@@ -5,28 +5,23 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
+import com.solucionescreativasdemallorca.elitetop.base.LoginType
 import com.solucionescreativasdemallorca.elitetop.recoverpassword.RecoverPasswordActivity
 import com.solucionescreativasdemallorca.elitetop.register.RegisterActivity
 
 
 class LoginActivity : BaseActivity() {
 
-    lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Get Auth
-        auth = FirebaseAuth.getInstance()
-
         // On Clicks
         val btn: Button = findViewById(R.id.login_form_btn)
         btn.setOnClickListener {
-            login()
+            loginCredentials()
         }
         val recoverAccount: TextView = findViewById(R.id.login_form_recoveraccount)
         recoverAccount.setOnClickListener {
@@ -38,20 +33,13 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun login() {
+    fun loginCredentials() {
         val email: TextInputEditText = findViewById(R.id.login_form_email_material_text)
         val password: TextInputEditText = findViewById(R.id.login_form_password_material_text)
         if (email.text.isNullOrBlank() || password.text.isNullOrBlank()) {
             showMessage("¡No debe haber ningún campo vacío!")
         } else {
-            auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
-                .addOnCompleteListener { it ->
-                    if (it.isSuccessful) {
-                        checkLoginAccountType(FirebaseAuth.getInstance())
-                    } else {
-                        showMessage("Error al iniciar sesión")
-                    }
-                }
+            login(email.text.toString(), password.text.toString(), LoginType.DEFAULT)
         }
     }
 

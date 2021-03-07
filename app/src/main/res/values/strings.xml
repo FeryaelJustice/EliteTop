@@ -2,6 +2,9 @@
     <string name="app_name" translatable="false">EliteTop</string>
     <string name="divider" translatable="false">Divider</string>
     <string name="logo" translatable="false">Logo</string>
+    <!-- Navigation View -->
+    <string name="nav_drawer_start" translatable="false">Start</string>
+    <string name="nav_drawer_close" translatable="false">Close</string>
 
     <!-- Utilities -->
 
@@ -20,6 +23,12 @@
         <item name="genres-man">Hombre</item>
         <item name="genres_woman">Mujer</item>
     </string-array>
+
+    <!-- Signout -->
+    <string name="signout">Cerrar sesión</string>
+
+    <!-- Config -->
+    <string name="config">Configuración</string>
 
     <!-- Login Activity -->
     <string name="login">Iniciar Sesión</string>

@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
+import com.solucionescreativasdemallorca.elitetop.login.LoginActivity
 import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -39,16 +40,42 @@ abstract class BaseActivity : AppCompatActivity() {
     fun replaceFragment(containerIdLayout: Int, fragmentClass: BaseFragment, tag: String) {
         fragmentClass.arguments = intent.extras
 
+        /*val displayedFragment = supportFragmentManager.findFragmentByTag(tag)
+        displayedFragment?.let {
+            val sameClass: Boolean = displayedFragment::class == fragmentClass::class
+            if (!sameClass) {
+                supportFragmentManager.beginTransaction()
+                    .replace(containerIdLayout, fragmentClass, tag).addToBackStack(javaClass.name)
+                    .setReorderingAllowed(true)
+                    .commit()
+            }
+        }*/
         supportFragmentManager.beginTransaction()
             .replace(containerIdLayout, fragmentClass, tag).addToBackStack(javaClass.name)
             .setReorderingAllowed(true)
             .commit()
+
     }
 
     // FIREBASE METHODS
 
+    protected open fun login(email: String, password: String, type: LoginType) {
+        // Get Auth
+        val auth = FirebaseAuth.getInstance()
+        when (type) {
+            LoginType.DEFAULT -> auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { it ->
+                    if (it.isSuccessful) {
+                        checkLoginAccountType(auth)
+                    } else {
+                        showMessage("Error al iniciar sesión")
+                    }
+                }
+        }
+    }
+
     // Login checking account type. Requires: a FirebaseAuth object instantiated
-    protected fun checkLoginAccountType(firebaseAuth: FirebaseAuth) {
+    protected open fun checkLoginAccountType(firebaseAuth: FirebaseAuth) {
         val db = FirebaseFirestore.getInstance()
         val document: DocumentReference =
             db.collection("users")
@@ -75,5 +102,20 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+    protected open fun logOut() {
+        if (signOut()) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun signOut(): Boolean {
+        return try {
+            FirebaseAuth.getInstance().signOut()
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
 
 }

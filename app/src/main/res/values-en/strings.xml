@@ -19,6 +19,12 @@
         <item name="genres_woman">Woman</item>
     </string-array>
 
+    <!-- Signout -->
+    <string name="signout">Cerrar sesión</string>
+
+    <!-- Config -->
+    <string name="config">Configuration</string>
+
     <!-- Login Activity -->
     <string name="login">Login</string>
     <string name="login_infoRegister">Still don\'t have an account? Register here.</string>
