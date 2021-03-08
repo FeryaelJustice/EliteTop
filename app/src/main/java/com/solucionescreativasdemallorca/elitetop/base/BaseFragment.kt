@@ -23,4 +23,5 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
+
 }

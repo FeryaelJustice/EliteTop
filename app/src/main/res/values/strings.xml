@@ -64,4 +64,7 @@
     <string name="bottom_nav_menu_item_resultados">Resultados</string>
     <string name="bottom_nav_menu_item_perfil">Perfil</string>
 
+    <!-- Edit Profile -->
+    <string name="save">Guardar cambios</string>
+
 </resources>

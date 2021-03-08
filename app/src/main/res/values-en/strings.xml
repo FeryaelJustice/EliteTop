@@ -58,4 +58,7 @@
     <string name="bottom_nav_menu_item_anadirevento">Add event</string>
     <string name="bottom_nav_menu_item_resultados">Results</string>
     <string name="bottom_nav_menu_item_perfil">Profile</string>
+
+    <!-- Edit Profile -->
+    <string name="save">Save changes</string>
 </resources>
