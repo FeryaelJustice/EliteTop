@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
@@ -20,24 +21,35 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseFragment
+import com.solucionescreativasdemallorca.elitetop.dataclass.User
+import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
 
 class AthletePerfilFragment : BaseFragment() {
 
-    private lateinit var userId: String
+    // FIREBASE USER DATA
 
+    private lateinit var userId: String
+    private lateinit var firebaseUser: FirebaseUser
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var firebaseStorage: FirebaseStorage
     private lateinit var storageReference: StorageReference
+    private lateinit var user: User
+    private lateinit var imageUri: Uri
 
-    private lateinit var firebaseUser: FirebaseUser
+    // ACTIVITY ELEMENTS
 
+    // User data form
     private lateinit var profileImage: ImageView
-    private var imageUri: Uri? = null
+    private lateinit var nickname: EditText
+    private lateinit var phoneNumber: EditText
+    private lateinit var accountType: EditText
+
+    // Button save form
     private lateinit var saveChangesBtn: Button
 
     companion object {
-        fun GALLERY_REQUEST_CODE(): Int = 1000
+        fun gallery_request_code(): Int = 1000
     }
 
     override fun onCreateView(
@@ -48,6 +60,8 @@ class AthletePerfilFragment : BaseFragment() {
             R.layout.fragment_athlete_perfil,
             container, false
         )
+
+        // App bar
         val toolbarBack: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_back)
         toolbarBack.visibility = View.GONE
         val toolbarTitle: TextView = requireActivity().findViewById(R.id.athlete_toolbar_appname)
@@ -57,76 +71,115 @@ class AthletePerfilFragment : BaseFragment() {
         val toolbarMenu: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_menu)
         toolbarMenu.visibility = View.VISIBLE
 
+        // Instantiate fragment elements
+        nickname = rootView.findViewById(R.id.editprofile_form_nickname_material_text)
+        phoneNumber = rootView.findViewById(R.id.editprofile_form_phone_material_text)
+        accountType = rootView.findViewById(R.id.editprofile_form_accounttype_material_dropdown)
+        profileImage = rootView.findViewById(R.id.editprofile_form_profilepicture)
+        saveChangesBtn = rootView.findViewById(R.id.editprofile_form_btn)
+
+        // Instantiate Firebase and Get and Set Data
+        initData(rootView)
+
+        // On Clicks
+        profileImage.setOnClickListener {
+            pickImage()
+        }
+        saveChangesBtn.setOnClickListener {
+            updateProfile()
+        }
+
+        return rootView
+    }
+
+    private fun initData(rootView: View) {
         // Instantiate Firebase
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseFirestore = FirebaseFirestore.getInstance()
         firebaseStorage = FirebaseStorage.getInstance()
         storageReference = firebaseStorage.reference
 
-
-        // Get data
         firebaseAuth.let {
             firebaseUser = it.currentUser!!
             userId = firebaseUser.uid
+            getAndSetProfileData(rootView)
+        }
+    }
 
-            firebaseFirestore.let { firebaseFirestore ->
-                val document: DocumentReference =
-                    firebaseFirestore.collection("users").document(userId)
-                document.addSnapshotListener { snapshot, _ ->
-                    if (snapshot != null && snapshot.exists()) {
-                        val nickname: EditText =
-                            rootView.findViewById(R.id.editprofile_form_nickname_material_text)
-                        val password: EditText =
-                            rootView.findViewById(R.id.editprofile_form_password_material_text)
-                        val phoneNumber: EditText =
-                            rootView.findViewById(R.id.editprofile_form_phone_material_text)
-                        val accountType: EditText =
-                            rootView.findViewById(R.id.editprofile_form_accounttype_material_dropdown)
+    private fun getAndSetProfileData(rootView: View) {
+        // Get data
+        firebaseFirestore.let { firebaseFirestore ->
+            val document: DocumentReference =
+                firebaseFirestore.collection("users").document(userId)
+            document.addSnapshotListener { snapshot, _ ->
+                if (snapshot != null && snapshot.exists()) {
+                    snapshot.let {
+                        user = User(
+                            snapshot.getString("email")!!,
+                            snapshot.getString("nickname")!!,
+                            snapshot.getString("password")!!,
+                            snapshot.getString("phone")!!,
+                            snapshot.getString("accountType")!!,
+                            snapshot.getString("name")!!,
+                            snapshot.getString("surnames")!!,
+                            snapshot.getString("birth")!!,
+                            snapshot.getString("genre")!!,
+                            snapshot.getString("nationality")!!,
+                            snapshot.getString("sports")!!
+                        )
 
-                        nickname.setText(snapshot.getString("nickname"))
-                        password.setText(snapshot.getString("password"))
-                        phoneNumber.setText(snapshot.getString("phone"))
-                        accountType.setText(snapshot.getString("accountType"))
-
+                        nickname.setText(user.nickname)
+                        phoneNumber.setText(user.phone)
+                        accountType.setText(user.accountType)
                     }
                 }
             }
+        }
 
+        storageReference.let {
             val profileRef = storageReference.child("users/$userId/profilepicture.jpg")
             profileRef.downloadUrl.addOnSuccessListener {
-                profileImage.setImageURI(it)
+                imageUri = it
+
+                context?.let { context ->
+                    Glide.with(context).load(imageUri).into(profileImage)
+                }
             }
         }
-
-        // On Clicks
-        profileImage = rootView.findViewById(R.id.editprofile_form_profilepicture)
-        profileImage.setOnClickListener {
-            pickImage()
-        }
-        saveChangesBtn = rootView.findViewById(R.id.editprofile_form_btn)
-        saveChangesBtn.setOnClickListener {
-            imageUri?.let { it1 -> uploadImageToFirebase(it1) }
-        }
-
-        return rootView
     }
 
     private fun pickImage() {
-        val openGalleryIntent: Intent =
+        val openGalleryIntent =
             Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         openGalleryIntent.type = "image/*"
-        startActivityForResult(openGalleryIntent, AthletePerfilFragment.GALLERY_REQUEST_CODE())
+        startActivityForResult(openGalleryIntent, gallery_request_code())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == AthletePerfilFragment.GALLERY_REQUEST_CODE()) {
+        if (requestCode == gallery_request_code()) {
             if (resultCode == Activity.RESULT_OK) {
-                imageUri = data?.data
-                imageUri?.let {
+                imageUri = data?.data!!
+                imageUri.let {
                     profileImage.setImageURI(it)
                 }
             }
+        }
+    }
+
+    private fun updateProfile() {
+        firebaseFirestore.let { firebaseFirestore ->
+            user.nickname = nickname.text.toString()
+            user.phone = phoneNumber.text.toString()
+            user.accountType = accountType.text.toString()
+
+            firebaseFirestore.collection("users").document(userId).set(user)
+                .addOnSuccessListener {
+                    uploadImageToFirebase(imageUri)
+                    showMessage("Profile updated.")
+                }.addOnFailureListener {
+                    showMessage("Failed to update the profile..")
+                }
         }
     }
 
@@ -134,9 +187,10 @@ class AthletePerfilFragment : BaseFragment() {
         val fileRef: StorageReference =
             storageReference.child("users/$userId/profilepicture.jpg")
         fileRef.putFile(imageUri).addOnSuccessListener {
-            showMessage("Image Uploaded.")
-        }.addOnFailureListener {
-            showMessage("Failed to upload image.")
+            this.imageUri = imageUri
+            val imageProfile: ImageView =
+                (activity as AthleteActivity).navigationHeaderView.findViewById(R.id.athlete_menu_navigation_header)
+            Glide.with(this).load(imageUri).into(imageProfile)
         }
     }
 }

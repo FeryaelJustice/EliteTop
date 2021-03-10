@@ -11,6 +11,7 @@
     <string name="intro">¡Bienvenido a Elite Top!</string>
     <string name="next">Siguiente</string>
     <string name="before">Anterior</string>
+    <string name="user">Usuario:%1$s</string>
 
     <!-- Data arrays -->
 

@@ -6,17 +6,19 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/athlete_menu_navigation_header"
         android:layout_width="match_parent"
         android:layout_height="176dp"
         android:contentDescription="Image Nav Drawer"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/imagecomputer" />
 
     <TextView
+        android:id="@+id/athlete_menu_navigation_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Usuario"
+        android:text="@string/user"
         android:textSize="25dp"
         android:textStyle="bold" />
 

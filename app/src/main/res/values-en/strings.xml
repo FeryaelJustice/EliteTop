@@ -6,6 +6,7 @@
     <string name="intro">Welcome to Elite Top!</string>
     <string name="next">Next</string>
     <string name="before">Before</string>
+    <string name="user">User:%1$s</string>
 
     <!-- Data Arrays -->
 
