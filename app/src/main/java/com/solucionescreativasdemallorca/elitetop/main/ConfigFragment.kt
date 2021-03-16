@@ -12,10 +12,10 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import com.solucionescreativasdemallorca.elitetop.R
+import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
 import com.solucionescreativasdemallorca.elitetop.base.BaseFragment
 import com.solucionescreativasdemallorca.elitetop.dataclass.ConfigItem
 import com.solucionescreativasdemallorca.elitetop.login.LoginActivity
-import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
 import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.entrenamiento.AthleteEntrenamientoFragment
 
 class ConfigFragment : BaseFragment() {
@@ -23,7 +23,7 @@ class ConfigFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val rootView: View = inflater.inflate(
             R.layout.fragment_config,
             container, false
@@ -31,7 +31,7 @@ class ConfigFragment : BaseFragment() {
         val toolbarBack: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_back)
         toolbarBack.visibility = View.VISIBLE
         toolbarBack.setOnClickListener {
-            (activity as AthleteActivity).replaceFragment(
+            (activity as BaseActivity).replaceFragment(
                 R.id.athlete_fragment_container,
                 AthleteEntrenamientoFragment(),
                 "AthleteEntrenamientoFragment"

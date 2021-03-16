@@ -239,6 +239,7 @@ class AthleteActivity : BaseActivity() {
             val displayedFragment = supportFragmentManager.findFragmentByTag("ConfigFragment")
             if (displayedFragment != null && displayedFragment.isVisible) {
                 //finish()
+                super.onBackPressed()
             } else {
                 super.onBackPressed()
             }

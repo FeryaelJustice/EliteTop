@@ -15,107 +15,139 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Perfil" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/editprofile_form_profilepicture"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_person"
-                app:civ_border_color="@color/black"
-                app:civ_border_width="2dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editprofile_form_nickname_material"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:endIconMode="clear_text"
-                app:startIconContentDescription="UserIcon"
-                app:startIconDrawable="@drawable/ic_baseline_person_24">
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editprofile_form_nickname_material_text"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_photo"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:src="@drawable/ic_person"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="2dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/nickname"
-                    android:inputType="textEmailAddress" />
+                    android:layout_height="match_parent">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/profile_numberPosts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/divider"
-                android:src="@drawable/empty_divider" />
+                    <TextView
+                        android:id="@+id/profile_posts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Publicaciones"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/profile_numberPosts"
+                        app:layout_constraintVertical_bias="0.0" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editprofile_form_phone_material"
+                    <TextView
+                        android:id="@+id/profile_numberFollowers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        app:layout_constraintStart_toEndOf="@+id/profile_posts"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/profile_Followers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Seguidores"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/profile_posts"
+                        app:layout_constraintTop_toBottomOf="@id/profile_numberFollowers"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/profile_numberFollows"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="78dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="72dp"
+                        android:text="0"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/profile_numberFollowers"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/profile_follows"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Siguiendo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/profile_Followers"
+                        app:layout_constraintTop_toBottomOf="@id/profile_numberFollows"
+                        app:layout_constraintVertical_bias="0.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:endIconMode="none"
-                app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editprofile_form_phone_material_text"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/profile_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/phone"
-                    android:inputType="phone" />
+                    android:text="Usuario Nombre" />
 
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/divider"
-                android:src="@drawable/empty_divider" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:startIconContentDescription="UserIcon"
-                app:startIconDrawable="@drawable/ic_baseline_email_24">
-
-                <AutoCompleteTextView
-                    android:id="@+id/editprofile_form_accounttype_material_dropdown"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/profile_accountType"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/accountType"
-                    android:inputType="none" />
+                    android:text="Categoría de perfil" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/profile_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/divider"
-                android:src="@drawable/empty_divider" />
+                <TextView
+                    android:id="@+id/profile_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Link" />
 
-            <Button
-                android:id="@+id/editprofile_form_btn"
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/save" />
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/divider"
-                android:src="@drawable/empty_divider" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/profile_editarPerfilBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar Perfil" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
     </ScrollView>
-
 
 </FrameLayout>
