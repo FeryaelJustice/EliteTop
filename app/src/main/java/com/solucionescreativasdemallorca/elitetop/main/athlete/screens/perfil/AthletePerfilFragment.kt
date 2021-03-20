@@ -107,9 +107,11 @@ class AthletePerfilFragment : BaseFragment() {
                             snapshot.getString("sports")!!
                         )
 
-                        val nickname = rootView.findViewById(R.id.profile_name) as TextView
+                        val name = rootView.findViewById(R.id.profile_name) as TextView
+                        val nickname = rootView.findViewById(R.id.profile_nickname) as TextView
                         val accountType =
                             rootView.findViewById(R.id.profile_accountType) as TextView
+                        name.text = user.name
                         nickname.text = user.nickname
                         accountType.text = user.accountType
                     }

@@ -8,10 +8,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -45,7 +42,7 @@ class EditProfileFragment : BaseFragment() {
     private lateinit var profileImage: ImageView
     private lateinit var nickname: EditText
     private lateinit var phoneNumber: EditText
-    private lateinit var accountType: EditText
+    private lateinit var accountType: AutoCompleteTextView
 
     // Button save form
     private lateinit var saveChangesBtn: Button
@@ -84,6 +81,14 @@ class EditProfileFragment : BaseFragment() {
         nickname = rootView.findViewById(R.id.editprofile_form_nickname_material_text)
         phoneNumber = rootView.findViewById(R.id.editprofile_form_phone_material_text)
         accountType = rootView.findViewById(R.id.editprofile_form_accounttype_material_dropdown)
+        ArrayAdapter.createFromResource(
+            rootView.context,
+            R.array.accountType_array,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            accountType.setAdapter(adapter)
+        }
         profileImage = rootView.findViewById(R.id.editprofile_form_profilepicture)
         saveChangesBtn = rootView.findViewById(R.id.editprofile_form_btn)
 
@@ -139,7 +144,15 @@ class EditProfileFragment : BaseFragment() {
 
                         nickname.setText(user.nickname)
                         phoneNumber.setText(user.phone)
-                        accountType.setText(user.accountType)
+                        resources.getStringArray(R.array.accountType_array)
+                            .forEachIndexed { index, string ->
+                                if (string == user.accountType) {
+                                    accountType.setText(
+                                        accountType.adapter.getItem(index).toString(),
+                                        false
+                                    )
+                                }
+                            }
                     }
                 }
             }
