@@ -52,10 +52,10 @@ class ConfigFragment : BaseFragment() {
         val listView: ListView = rootView.findViewById(R.id.config_list)
         val adapter = context?.let { ConfigListAdapter(it, listObjects) }
         listView.adapter = adapter
-        listView.setOnItemClickListener { parent, view, position, id ->
+        listView.setOnItemClickListener { _, _, position, _ ->
             val item: ConfigItem = listObjects[position]
             if (item.title == "Perfil") {
-                //activity?.startActivity(Intent(activity, RecoverPasswordActivity::class.java))
+                // activity?.startActivity(Intent(activity, RecoverPasswordActivity::class.java))
             } else if (item.title == "Cerrar sesión") {
                 activity?.let {
                     if (signOut()) {

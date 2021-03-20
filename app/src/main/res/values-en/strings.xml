@@ -54,6 +54,7 @@
     <string name="sendEmail">Send email</string>
 
     <!-- Bottom Navigation -->
+    <string name="bottom_nav_menu_item_home">Home</string>
     <string name="bottom_nav_menu_item_training">Training</string>
     <string name="bottom_nav_menu_item_dieta">Diet</string>
     <string name="bottom_nav_menu_item_anadirevento">Add event</string>

@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
@@ -25,10 +26,15 @@ import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.anadireve
 import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.chat.AthleteChatFragment
 import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.dieta.AthleteDietaFragment
 import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.entrenamiento.AthleteEntrenamientoFragment
+import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.home.AthleteHomeFragment
 import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.perfil.AthletePerfilFragment
 import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.resultados.AthleteResultadosFragment
 
 class AthleteActivity : BaseActivity() {
+
+    // FIREBASE
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     // FIREBASE USER DATA
 
@@ -59,7 +65,10 @@ class AthleteActivity : BaseActivity() {
         setContentView(R.layout.activity_athlete)
 
         // Instantiate activity elements
+        val appName: TextView = findViewById(R.id.athlete_toolbar_appname)
         val chatNavigation: ImageView = findViewById(R.id.athlete_toolbar_chat)
+        val profileMenu: ImageView = findViewById(R.id.athlete_toolbar_menu)
+        val config: TextView = findViewById(R.id.athlete_navigation_config)
         drawerLayout = findViewById(R.id.athlete_drawerlayout)
         navigationView = findViewById(R.id.athlete_navigation_profile)
         navigationHeaderView = navigationView.getHeaderView(0)
@@ -69,14 +78,19 @@ class AthleteActivity : BaseActivity() {
             R.string.nav_drawer_start,
             R.string.nav_drawer_close
         )
-        val profileMenu: ImageView = findViewById(R.id.athlete_toolbar_menu)
-        val config: TextView = findViewById(R.id.athlete_navigation_config)
         bottomNavigation = findViewById(R.id.athlete_bottom_nav_view)
 
         // Instantiate Firebase and Get and Set Data
         initData()
 
         // On Clicks
+        appName.setOnClickListener {
+            replaceFragment(
+                R.id.athlete_fragment_container,
+                AthleteHomeFragment(),
+                "AthleteHomeFragment"
+            )
+        }
         chatNavigation.setOnClickListener {
             replaceFragment(
                 R.id.athlete_fragment_container,
@@ -89,6 +103,16 @@ class AthleteActivity : BaseActivity() {
                 drawerLayout.closeDrawer(GravityCompat.END)
             } else {
                 drawerLayout.openDrawer(GravityCompat.END)
+            }
+        }
+        config.setOnClickListener {
+            if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                drawerLayout.closeDrawer(GravityCompat.END)
+                replaceFragment(
+                    R.id.athlete_fragment_container,
+                    ConfigFragment(),
+                    "ConfigFragment"
+                )
             }
         }
         navigationView.setNavigationItemSelectedListener { menuItem ->
@@ -106,16 +130,6 @@ class AthleteActivity : BaseActivity() {
                     true
                 }
                 else -> false
-            }
-        }
-        config.setOnClickListener {
-            if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                drawerLayout.closeDrawer(GravityCompat.END)
-                replaceFragment(
-                    R.id.athlete_fragment_container,
-                    ConfigFragment(),
-                    "ConfigFragment"
-                )
             }
         }
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
@@ -165,11 +179,21 @@ class AthleteActivity : BaseActivity() {
         }
 
         // Default select one tab on bottom navigation
-        bottomNavigation.selectedItemId = R.id.bottom_nav_menu_athlete_item_entrenamiento
+        // bottomNavigation.selectedItemId = R.id.bottom_nav_menu_athlete_item_entrenamiento
+        replaceFragment(
+            R.id.athlete_fragment_container,
+            AthleteHomeFragment(),
+            "AthleteHomeFragment"
+        )
     }
 
     private fun initData() {
         // Instantiate Firebase
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString("message", "Integración de Firebase completa")
+        firebaseAnalytics.logEvent("InitScreen", bundle)
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseFirestore = FirebaseFirestore.getInstance()
         firebaseStorage = FirebaseStorage.getInstance()

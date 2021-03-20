@@ -48,7 +48,7 @@ class EditProfileFragment : BaseFragment() {
     private lateinit var saveChangesBtn: Button
 
     companion object {
-        fun gallery_request_code(): Int = 1000
+        fun gallery_Request_Code(): Int = 1000
     }
 
     override fun onCreateView(
@@ -174,12 +174,12 @@ class EditProfileFragment : BaseFragment() {
         val openGalleryIntent =
             Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         openGalleryIntent.type = "image/*"
-        startActivityForResult(openGalleryIntent, gallery_request_code())
+        startActivityForResult(openGalleryIntent, gallery_Request_Code())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == gallery_request_code()) {
+        if (requestCode == gallery_Request_Code()) {
             if (resultCode == Activity.RESULT_OK) {
                 imageUri = data?.data!!
                 imageUri.let {

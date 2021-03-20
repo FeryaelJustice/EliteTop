@@ -5,17 +5,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
-import com.solucionescreativasdemallorca.elitetop.login.LoginActivity
 import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
 
 abstract class BaseActivity : AppCompatActivity() {
-
-    protected lateinit var firebaseAnalytics: FirebaseAnalytics
 
     protected fun showMessage(message: String) {
         Toast.makeText(
@@ -40,16 +36,6 @@ abstract class BaseActivity : AppCompatActivity() {
     fun replaceFragment(containerIdLayout: Int, fragmentClass: BaseFragment, tag: String) {
         fragmentClass.arguments = intent.extras
 
-        /*val displayedFragment = supportFragmentManager.findFragmentByTag(tag)
-        displayedFragment?.let {
-            val sameClass: Boolean = displayedFragment::class == fragmentClass::class
-            if (!sameClass) {
-                supportFragmentManager.beginTransaction()
-                    .replace(containerIdLayout, fragmentClass, tag).addToBackStack(javaClass.name)
-                    .setReorderingAllowed(true)
-                    .commit()
-            }
-        }*/
         supportFragmentManager.beginTransaction()
             .replace(containerIdLayout, fragmentClass, tag).addToBackStack(javaClass.name)
             .setReorderingAllowed(true)
@@ -102,14 +88,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected open fun logOut() {
-        if (signOut()) {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-    }
-
-    private fun signOut(): Boolean {
+    protected fun signOut(): Boolean {
         return try {
             FirebaseAuth.getInstance().signOut()
             true

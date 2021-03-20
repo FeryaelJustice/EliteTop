@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.google.firebase.FirebaseApp
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.solucionescreativasdemallorca.elitetop.base.BaseActivity
 import com.solucionescreativasdemallorca.elitetop.login.LoginActivity
@@ -17,13 +16,6 @@ class SplashScreen : BaseActivity() {
 
         // INITIALIZE FIREBASE IN ALL APP (VERY IMPORTANT)
         FirebaseApp.initializeApp(this)
-
-        // Firebase Analytics
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-
-        val bundle = Bundle()
-        bundle.putString("message", "Integración de Firebase completa")
-        firebaseAnalytics.logEvent("InitScreen", bundle)
 
         // Firebase Authentication
         val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
