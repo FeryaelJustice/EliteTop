@@ -15,7 +15,12 @@ class RegisterActivity : BaseActivity() {
 
         user = User("", "", "", "", "", "", "", "", "", "", "")
 
-        addFragment(R.id.register_fragment_container, RegisterFragment(), "RegisterFragment")
+        addFragment(
+            R.id.register_fragment_container,
+            RegisterFragment(),
+            "RegisterFragment",
+            Bundle()
+        )
     }
 
 }

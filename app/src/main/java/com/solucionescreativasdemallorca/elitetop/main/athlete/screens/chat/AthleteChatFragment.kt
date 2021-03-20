@@ -27,7 +27,8 @@ class AthleteChatFragment : BaseFragment() {
             (activity as AthleteActivity).replaceFragment(
                 R.id.athlete_fragment_container,
                 AthleteEntrenamientoFragment(),
-                "AthleteEntrenamientoFragment"
+                "AthleteEntrenamientoFragment",
+                arguments
             )
         }
         val toolbarTitle: TextView = requireActivity().findViewById(R.id.athlete_toolbar_appname)

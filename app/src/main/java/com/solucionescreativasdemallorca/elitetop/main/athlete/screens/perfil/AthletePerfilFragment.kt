@@ -43,6 +43,32 @@ class AthletePerfilFragment : BaseFragment() {
             container, false
         )
 
+        showMessage(arguments?.getString("userId") ?: "")
+
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        firebaseAuth.let {
+            firebaseUser = it.currentUser!!
+            userId = firebaseUser.uid
+
+            val userIdOwnerPetition: String =
+                arguments?.getString("userId") ?: ""
+
+            if (userId == userIdOwnerPetition) {
+                initMyProfile(rootView)
+            } else {
+                initPublicProfile(rootView)
+            }
+
+        }
+        return rootView
+    }
+
+    private fun initPublicProfile(rootView: View) {
+
+    }
+
+    private fun initMyProfile(rootView: View) {
         // App bar
         val toolbarBack: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_back)
         toolbarBack.visibility = View.GONE
@@ -53,39 +79,33 @@ class AthletePerfilFragment : BaseFragment() {
         val toolbarMenu: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_menu)
         toolbarMenu.visibility = View.VISIBLE
 
+        // Instantiate fragment elements
         val editarPerfilBtn = rootView.findViewById(R.id.profile_editarPerfilBtn) as MaterialButton
+
+        // On Clicks
         editarPerfilBtn.setOnClickListener {
             openEditProfile()
         }
 
-        initFirebase(rootView)
+        setProfileData(rootView)
 
-        return rootView
     }
 
     private fun openEditProfile() {
         (activity as BaseActivity).replaceFragment(
             R.id.athlete_fragment_container,
             EditProfileFragment(),
-            "EditProfileFragment"
+            "EditProfileFragment",
+            arguments
         )
     }
 
-    private fun initFirebase(rootView: View) {
+    private fun setProfileData(rootView: View) {
         // Instantiate Firebase
-        firebaseAuth = FirebaseAuth.getInstance()
         firebaseFirestore = FirebaseFirestore.getInstance()
         firebaseStorage = FirebaseStorage.getInstance()
         storageReference = firebaseStorage.reference
 
-        firebaseAuth.let {
-            firebaseUser = it.currentUser!!
-            userId = firebaseUser.uid
-            setProfileData(rootView)
-        }
-    }
-
-    private fun setProfileData(rootView: View) {
         // Get data
         firebaseFirestore.let { firebaseFirestore ->
             val document: DocumentReference =

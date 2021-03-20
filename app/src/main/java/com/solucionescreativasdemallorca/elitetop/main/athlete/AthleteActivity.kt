@@ -32,6 +32,8 @@ import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.resultado
 
 class AthleteActivity : BaseActivity() {
 
+    private var bundle: Bundle? = null
+
     // FIREBASE
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
@@ -64,149 +66,163 @@ class AthleteActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_athlete)
 
-        // Instantiate activity elements
-        val appName: TextView = findViewById(R.id.athlete_toolbar_appname)
-        val chatNavigation: ImageView = findViewById(R.id.athlete_toolbar_chat)
-        val profileMenu: ImageView = findViewById(R.id.athlete_toolbar_menu)
-        val config: TextView = findViewById(R.id.athlete_navigation_config)
-        drawerLayout = findViewById(R.id.athlete_drawerlayout)
-        navigationView = findViewById(R.id.athlete_navigation_profile)
-        navigationHeaderView = navigationView.getHeaderView(0)
-        toggle = ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            R.string.nav_drawer_start,
-            R.string.nav_drawer_close
-        )
-        bottomNavigation = findViewById(R.id.athlete_bottom_nav_view)
-
-        // Instantiate Firebase and Get and Set Data
-        initData()
-
-        // On Clicks
-        appName.setOnClickListener {
-            replaceFragment(
-                R.id.athlete_fragment_container,
-                AthleteHomeFragment(),
-                "AthleteHomeFragment"
-            )
-        }
-        chatNavigation.setOnClickListener {
-            replaceFragment(
-                R.id.athlete_fragment_container,
-                AthleteChatFragment(),
-                "AthleteChatFragment"
-            )
-        }
-        profileMenu.setOnClickListener {
-            if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                drawerLayout.closeDrawer(GravityCompat.END)
-            } else {
-                drawerLayout.openDrawer(GravityCompat.END)
-            }
-        }
-        config.setOnClickListener {
-            if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                drawerLayout.closeDrawer(GravityCompat.END)
-                replaceFragment(
-                    R.id.athlete_fragment_container,
-                    ConfigFragment(),
-                    "ConfigFragment"
-                )
-            }
-        }
-        navigationView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.athlete_profile_navigation_item_perfil -> {
-                    if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                        drawerLayout.closeDrawer(GravityCompat.END)
-                    }
-                    true
-                }
-                R.id.athlete_profile_navigation_item_training -> {
-                    if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                        drawerLayout.closeDrawer(GravityCompat.END)
-                    }
-                    true
-                }
-                else -> false
-            }
-        }
-        bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.bottom_nav_menu_athlete_item_entrenamiento -> {
-                    replaceFragment(
-                        R.id.athlete_fragment_container,
-                        AthleteEntrenamientoFragment(),
-                        "AthleteEntrenamientoFragment"
-                    )
-                    true
-                }
-                R.id.bottom_nav_menu_athlete_item_dieta -> {
-                    replaceFragment(
-                        R.id.athlete_fragment_container,
-                        AthleteDietaFragment(),
-                        "AthleteDietaFragment"
-                    )
-                    true
-                }
-                R.id.bottom_nav_menu_athlete_item_anadirevento -> {
-                    replaceFragment(
-                        R.id.athlete_fragment_container,
-                        AthleteAnadirEventoFragment(),
-                        "AthleteAnadirEventoFragment"
-                    )
-                    true
-                }
-                R.id.bottom_nav_menu_athlete_item_resultados -> {
-                    replaceFragment(
-                        R.id.athlete_fragment_container,
-                        AthleteResultadosFragment(),
-                        "AthleteResultadosFragment"
-                    )
-                    true
-                }
-                R.id.bottom_nav_menu_athlete_item_perfil -> {
-                    replaceFragment(
-                        R.id.athlete_fragment_container,
-                        AthletePerfilFragment(),
-                        "AthletePerfilFragment"
-                    )
-                    true
-                }
-                else -> false
-            }
-        }
-
-        // Default select one tab on bottom navigation
-        // bottomNavigation.selectedItemId = R.id.bottom_nav_menu_athlete_item_entrenamiento
-        replaceFragment(
-            R.id.athlete_fragment_container,
-            AthleteHomeFragment(),
-            "AthleteHomeFragment"
-        )
-    }
-
-    private fun initData() {
-        // Instantiate Firebase
-
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        val bundle = Bundle()
-        bundle.putString("message", "Integración de Firebase completa")
-        firebaseAnalytics.logEvent("InitScreen", bundle)
         firebaseAuth = FirebaseAuth.getInstance()
-        firebaseFirestore = FirebaseFirestore.getInstance()
-        firebaseStorage = FirebaseStorage.getInstance()
-        storageReference = firebaseStorage.reference
 
         firebaseAuth.let {
             firebaseUser = it.currentUser!!
             userId = firebaseUser.uid
-            getAndSetProfileData()
+
+            bundle = Bundle()
+            bundle?.putString("userId", userId)
+
+            // Instantiate activity elements
+            val appName: TextView = findViewById(R.id.athlete_toolbar_appname)
+            val chatNavigation: ImageView = findViewById(R.id.athlete_toolbar_chat)
+            val profileMenu: ImageView = findViewById(R.id.athlete_toolbar_menu)
+            val config: TextView = findViewById(R.id.athlete_navigation_config)
+            drawerLayout = findViewById(R.id.athlete_drawerlayout)
+            navigationView = findViewById(R.id.athlete_navigation_profile)
+            navigationHeaderView = navigationView.getHeaderView(0)
+            toggle = ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                R.string.nav_drawer_start,
+                R.string.nav_drawer_close
+            )
+            bottomNavigation = findViewById(R.id.athlete_bottom_nav_view)
+
+            // On Clicks
+            appName.setOnClickListener {
+                replaceFragment(
+                    R.id.athlete_fragment_container,
+                    AthleteHomeFragment(),
+                    "AthleteHomeFragment",
+                    bundle,
+                )
+            }
+            chatNavigation.setOnClickListener {
+                replaceFragment(
+                    R.id.athlete_fragment_container,
+                    AthleteChatFragment(),
+                    "AthleteChatFragment",
+                    bundle,
+                )
+            }
+            profileMenu.setOnClickListener {
+                if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                    drawerLayout.closeDrawer(GravityCompat.END)
+                } else {
+                    drawerLayout.openDrawer(GravityCompat.END)
+                }
+            }
+            config.setOnClickListener {
+                if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                    drawerLayout.closeDrawer(GravityCompat.END)
+                    replaceFragment(
+                        R.id.athlete_fragment_container,
+                        ConfigFragment(),
+                        "ConfigFragment", bundle,
+                    )
+                }
+            }
+            navigationView.setNavigationItemSelectedListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.athlete_profile_navigation_item_perfil -> {
+                        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                            drawerLayout.closeDrawer(GravityCompat.END)
+                        }
+                        true
+                    }
+                    R.id.athlete_profile_navigation_item_training -> {
+                        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                            drawerLayout.closeDrawer(GravityCompat.END)
+                        }
+                        true
+                    }
+                    else -> false
+                }
+            }
+            bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.bottom_nav_menu_athlete_item_entrenamiento -> {
+                        replaceFragment(
+                            R.id.athlete_fragment_container,
+                            AthleteEntrenamientoFragment(),
+                            "AthleteEntrenamientoFragment",
+                            bundle,
+                        )
+                        true
+                    }
+                    R.id.bottom_nav_menu_athlete_item_dieta -> {
+                        replaceFragment(
+                            R.id.athlete_fragment_container,
+                            AthleteDietaFragment(),
+                            "AthleteDietaFragment",
+                            bundle,
+                        )
+                        true
+                    }
+                    R.id.bottom_nav_menu_athlete_item_anadirevento -> {
+                        replaceFragment(
+                            R.id.athlete_fragment_container,
+                            AthleteAnadirEventoFragment(),
+                            "AthleteAnadirEventoFragment",
+                            bundle,
+                        )
+                        true
+                    }
+                    R.id.bottom_nav_menu_athlete_item_resultados -> {
+                        replaceFragment(
+                            R.id.athlete_fragment_container,
+                            AthleteResultadosFragment(),
+                            "AthleteResultadosFragment",
+                            bundle,
+                        )
+                        true
+                    }
+                    R.id.bottom_nav_menu_athlete_item_perfil -> {
+                        replaceFragment(
+                            R.id.athlete_fragment_container,
+                            AthletePerfilFragment(),
+                            "AthletePerfilFragment",
+                            bundle,
+                        )
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            // Default select one tab on bottom navigation
+            // bottomNavigation.selectedItemId = R.id.bottom_nav_menu_athlete_item_entrenamiento
+
+            showMessage(bundle?.getString("userId").toString())
+
+            // Select home as default
+            addFragment(
+                R.id.athlete_fragment_container,
+                AthleteHomeFragment(),
+                "AthleteHomeFragment",
+                bundle
+            )
+
+            // Set data
+            setData()
+
         }
     }
 
-    private fun getAndSetProfileData() {
+    private fun setData() {
+        // Instantiate Firebase
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString("message", "Integración de Firebase completa")
+        firebaseAnalytics.logEvent("InitScreen", bundle)
+        firebaseFirestore = FirebaseFirestore.getInstance()
+        firebaseStorage = FirebaseStorage.getInstance()
+        storageReference = firebaseStorage.reference
+
+
         // Get data
         firebaseFirestore.let { firebaseFirestore ->
             val document: DocumentReference =
@@ -253,6 +269,7 @@ class AthleteActivity : BaseActivity() {
                 }
             }
         }
+
     }
 
     // Close navigation drawer on back pressed

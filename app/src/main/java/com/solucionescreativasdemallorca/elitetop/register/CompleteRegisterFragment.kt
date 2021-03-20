@@ -118,7 +118,8 @@ class CompleteRegisterFragment : BaseFragment() {
             (activity as RegisterActivity).replaceFragment(
                 R.id.register_fragment_container,
                 AccountInfoRegisterFragment(),
-                "AccountInfoRegisterFragment"
+                "AccountInfoRegisterFragment",
+                arguments
             )
         }
     }

@@ -78,7 +78,8 @@ class RegisterFragment : BaseFragment() {
                 (activity as RegisterActivity).replaceFragment(
                     R.id.register_fragment_container,
                     CompleteRegisterFragment(),
-                    "CompleteRegisterFragment"
+                    "CompleteRegisterFragment",
+                    arguments
                 )
             } else {
                 showMessage("¡Las contraseñas deben coincidir!")

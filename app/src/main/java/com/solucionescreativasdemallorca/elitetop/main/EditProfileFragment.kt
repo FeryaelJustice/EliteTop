@@ -60,67 +60,67 @@ class EditProfileFragment : BaseFragment() {
             container, false
         )
 
-        // App bar
-        val toolbarBack: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_back)
-        toolbarBack.visibility = View.VISIBLE
-        toolbarBack.setOnClickListener {
-            (activity as BaseActivity).replaceFragment(
-                R.id.athlete_fragment_container,
-                AthletePerfilFragment(),
-                "AthletePerfilFragment"
-            )
-        }
-        val toolbarTitle: TextView = requireActivity().findViewById(R.id.athlete_toolbar_appname)
-        toolbarTitle.visibility = View.GONE
-        val toolbarChat: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_chat)
-        toolbarChat.visibility = View.GONE
-        val toolbarMenu: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_menu)
-        toolbarMenu.visibility = View.GONE
+        firebaseAuth = FirebaseAuth.getInstance()
 
-        // Instantiate fragment elements
-        nickname = rootView.findViewById(R.id.editprofile_form_nickname_material_text)
-        phoneNumber = rootView.findViewById(R.id.editprofile_form_phone_material_text)
-        accountType = rootView.findViewById(R.id.editprofile_form_accounttype_material_dropdown)
-        ArrayAdapter.createFromResource(
-            rootView.context,
-            R.array.accountType_array,
-            android.R.layout.simple_spinner_dropdown_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            accountType.setAdapter(adapter)
-        }
-        profileImage = rootView.findViewById(R.id.editprofile_form_profilepicture)
-        saveChangesBtn = rootView.findViewById(R.id.editprofile_form_btn)
+        firebaseAuth.let {
+            firebaseUser = it.currentUser!!
+            userId = firebaseUser.uid
 
-        // Instantiate Firebase and Get and Set Data
-        initData()
+            // App bar
+            val toolbarBack: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_back)
+            toolbarBack.visibility = View.VISIBLE
+            toolbarBack.setOnClickListener {
+                (activity as BaseActivity).replaceFragment(
+                    R.id.athlete_fragment_container,
+                    AthletePerfilFragment(),
+                    "AthletePerfilFragment",
+                    arguments
+                )
+            }
+            val toolbarTitle: TextView =
+                requireActivity().findViewById(R.id.athlete_toolbar_appname)
+            toolbarTitle.visibility = View.GONE
+            val toolbarChat: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_chat)
+            toolbarChat.visibility = View.GONE
+            val toolbarMenu: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_menu)
+            toolbarMenu.visibility = View.GONE
 
-        // On Clicks
-        profileImage.setOnClickListener {
-            pickImage()
-        }
-        saveChangesBtn.setOnClickListener {
-            updateProfile()
+            // Instantiate fragment elements
+            nickname = rootView.findViewById(R.id.editprofile_form_nickname_material_text)
+            phoneNumber = rootView.findViewById(R.id.editprofile_form_phone_material_text)
+            accountType = rootView.findViewById(R.id.editprofile_form_accounttype_material_dropdown)
+            ArrayAdapter.createFromResource(
+                rootView.context,
+                R.array.accountType_array,
+                android.R.layout.simple_spinner_dropdown_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                accountType.setAdapter(adapter)
+            }
+            profileImage = rootView.findViewById(R.id.editprofile_form_profilepicture)
+            saveChangesBtn = rootView.findViewById(R.id.editprofile_form_btn)
+
+            // On Clicks
+            profileImage.setOnClickListener {
+                pickImage()
+            }
+            saveChangesBtn.setOnClickListener {
+                updateProfile()
+            }
+
+            // Set Data
+            setProfileData()
         }
 
         return rootView
     }
 
-    private fun initData() {
+    private fun setProfileData() {
         // Instantiate Firebase
-        firebaseAuth = FirebaseAuth.getInstance()
         firebaseFirestore = FirebaseFirestore.getInstance()
         firebaseStorage = FirebaseStorage.getInstance()
         storageReference = firebaseStorage.reference
 
-        firebaseAuth.let {
-            firebaseUser = it.currentUser!!
-            userId = firebaseUser.uid
-            getAndSetProfileData()
-        }
-    }
-
-    private fun getAndSetProfileData() {
         // Get data
         firebaseFirestore.let { firebaseFirestore ->
             val document: DocumentReference =

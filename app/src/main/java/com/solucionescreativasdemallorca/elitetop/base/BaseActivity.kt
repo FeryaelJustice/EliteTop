@@ -1,6 +1,7 @@
 package com.solucionescreativasdemallorca.elitetop.base
 
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,8 +24,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
     // FRAGMENTS
 
-    fun addFragment(containerIdLayout: Int, fragmentClass: BaseFragment, tag: String) {
-        fragmentClass.arguments = intent.extras
+    fun addFragment(
+        containerIdLayout: Int,
+        fragmentClass: BaseFragment,
+        tag: String,
+        bundle: Bundle?
+    ) {
+        fragmentClass.arguments = bundle
 
         supportFragmentManager.commit {
             setReorderingAllowed(true)
@@ -33,8 +39,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
-    fun replaceFragment(containerIdLayout: Int, fragmentClass: BaseFragment, tag: String) {
-        fragmentClass.arguments = intent.extras
+    fun replaceFragment(
+        containerIdLayout: Int,
+        fragmentClass: BaseFragment,
+        tag: String,
+        bundle: Bundle?
+    ) {
+        fragmentClass.arguments = bundle
 
         supportFragmentManager.beginTransaction()
             .replace(containerIdLayout, fragmentClass, tag).addToBackStack(javaClass.name)
