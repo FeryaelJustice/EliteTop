@@ -77,6 +77,7 @@ class AthleteActivity : BaseActivity() {
 
             // Instantiate activity elements
             val appName: TextView = findViewById(R.id.athlete_toolbar_appname)
+            val screenName: TextView = findViewById(R.id.athlete_toolbar_screenname)
             val chatNavigation: ImageView = findViewById(R.id.athlete_toolbar_chat)
             val profileMenu: ImageView = findViewById(R.id.athlete_toolbar_menu)
             val config: TextView = findViewById(R.id.athlete_navigation_config)
@@ -93,6 +94,14 @@ class AthleteActivity : BaseActivity() {
 
             // On Clicks
             appName.setOnClickListener {
+                replaceFragment(
+                    R.id.athlete_fragment_container,
+                    AthleteHomeFragment(),
+                    "AthleteHomeFragment",
+                    bundle,
+                )
+            }
+            screenName.setOnClickListener {
                 replaceFragment(
                     R.id.athlete_fragment_container,
                     AthleteHomeFragment(),
@@ -199,7 +208,7 @@ class AthleteActivity : BaseActivity() {
             showMessage(bundle?.getString("userId").toString())
 
             // Select home as default
-            addFragment(
+            replaceFragment(
                 R.id.athlete_fragment_container,
                 AthleteHomeFragment(),
                 "AthleteHomeFragment",

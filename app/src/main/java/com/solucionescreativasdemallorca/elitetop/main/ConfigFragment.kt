@@ -40,7 +40,10 @@ class ConfigFragment : BaseFragment() {
         }
         val toolbarTitle: TextView = requireActivity().findViewById(R.id.athlete_toolbar_appname)
         toolbarTitle.visibility = View.GONE
-
+        val toolbarScreenName: TextView =
+            requireActivity().findViewById(R.id.athlete_toolbar_screenname)
+        toolbarScreenName.visibility = View.VISIBLE
+        toolbarScreenName.text = resources.getString(R.string.config)
         val toolbarChat: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_chat)
         toolbarChat.visibility = View.GONE
         val toolbarMenu: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_menu)

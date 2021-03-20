@@ -73,7 +73,11 @@ class AthletePerfilFragment : BaseFragment() {
         val toolbarBack: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_back)
         toolbarBack.visibility = View.GONE
         val toolbarTitle: TextView = requireActivity().findViewById(R.id.athlete_toolbar_appname)
-        toolbarTitle.visibility = View.VISIBLE
+        toolbarTitle.visibility = View.GONE
+        val toolbarScreenName: TextView =
+            requireActivity().findViewById(R.id.athlete_toolbar_screenname)
+        toolbarScreenName.visibility = View.VISIBLE
+        toolbarScreenName.text = resources.getString(R.string.bottom_nav_menu_item_perfil)
         val toolbarChat: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_chat)
         toolbarChat.visibility = View.GONE
         val toolbarMenu: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_menu)

@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.solucionescreativasdemallorca.elitetop.R
 import com.solucionescreativasdemallorca.elitetop.base.BaseFragment
 import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
-import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.entrenamiento.AthleteEntrenamientoFragment
+import com.solucionescreativasdemallorca.elitetop.main.athlete.screens.home.AthleteHomeFragment
 
 class AthleteChatFragment : BaseFragment() {
 
@@ -26,13 +26,16 @@ class AthleteChatFragment : BaseFragment() {
         toolbarBack.setOnClickListener {
             (activity as AthleteActivity).replaceFragment(
                 R.id.athlete_fragment_container,
-                AthleteEntrenamientoFragment(),
-                "AthleteEntrenamientoFragment",
+                AthleteHomeFragment(),
+                "AthleteHomeFragment",
                 arguments
             )
         }
         val toolbarTitle: TextView = requireActivity().findViewById(R.id.athlete_toolbar_appname)
         toolbarTitle.visibility = View.GONE
+        val toolbarScreenName: TextView =
+            requireActivity().findViewById(R.id.athlete_toolbar_screenname)
+        toolbarScreenName.visibility = View.GONE
         val toolbarChat: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_chat)
         toolbarChat.visibility = View.GONE
         val toolbarMenu: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_menu)

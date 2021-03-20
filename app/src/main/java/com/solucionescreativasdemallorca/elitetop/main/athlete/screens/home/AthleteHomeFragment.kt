@@ -22,6 +22,9 @@ class AthleteHomeFragment : BaseFragment() {
         toolbarBack.visibility = View.GONE
         val toolbarTitle: TextView = requireActivity().findViewById(R.id.athlete_toolbar_appname)
         toolbarTitle.visibility = View.VISIBLE
+        val toolbarScreenName: TextView =
+            requireActivity().findViewById(R.id.athlete_toolbar_screenname)
+        toolbarScreenName.visibility = View.GONE
         val toolbarChat: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_chat)
         toolbarChat.visibility = View.VISIBLE
         val toolbarMenu: ImageView = requireActivity().findViewById(R.id.athlete_toolbar_menu)
