@@ -18,7 +18,7 @@ import com.solucionescreativasdemallorca.elitetop.main.athlete.AthleteActivity
 
 class AccountInfoRegisterFragment : BaseFragment() {
 
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

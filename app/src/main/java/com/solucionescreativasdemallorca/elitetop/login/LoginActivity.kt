@@ -33,7 +33,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    fun loginCredentials() {
+    private fun loginCredentials() {
         val email: TextInputEditText = findViewById(R.id.login_form_email_material_text)
         val password: TextInputEditText = findViewById(R.id.login_form_password_material_text)
         if (email.text.isNullOrBlank() || password.text.isNullOrBlank()) {

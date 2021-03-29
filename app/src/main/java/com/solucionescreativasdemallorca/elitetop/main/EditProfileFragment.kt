@@ -46,11 +46,7 @@ class EditProfileFragment : BaseFragment() {
 
     // Button save form
     private lateinit var saveChangesBtn: Button
-
-    companion object {
-        fun gallery_Request_Code(): Int = 1000
-    }
-
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -174,12 +170,12 @@ class EditProfileFragment : BaseFragment() {
         val openGalleryIntent =
             Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         openGalleryIntent.type = "image/*"
-        startActivityForResult(openGalleryIntent, gallery_Request_Code())
+        startActivityForResult(openGalleryIntent, galleryRequestCode())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == gallery_Request_Code()) {
+        if (requestCode == galleryRequestCode()) {
             if (resultCode == Activity.RESULT_OK) {
                 imageUri = data?.data!!
                 imageUri.let {
@@ -215,5 +211,9 @@ class EditProfileFragment : BaseFragment() {
             Glide.with(this).load(imageUri).into(imageProfile)
         }
     }
-
+    
+    companion object {
+        fun galleryRequestCode(): Int = 1000
+    }
+    
 }

@@ -119,7 +119,7 @@
             android:id="@+id/login_form_recoveraccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:text="@string/login_recoverAccount"
             android:textSize="12sp" />
 
