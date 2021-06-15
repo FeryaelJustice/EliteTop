@@ -43,7 +43,7 @@ class AthletePerfilFragment : BaseFragment() {
             container, false
         )
 
-        showMessage(arguments?.getString("userId") ?: "")
+        //showMessage(arguments?.getString("userId") ?: "")
 
         firebaseAuth = FirebaseAuth.getInstance()
 

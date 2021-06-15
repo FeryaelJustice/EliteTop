@@ -205,7 +205,7 @@ class AthleteActivity : BaseActivity() {
             // Default select one tab on bottom navigation
             // bottomNavigation.selectedItemId = R.id.bottom_nav_menu_athlete_item_entrenamiento
 
-            showMessage(bundle?.getString("userId").toString())
+            //showMessage(bundle?.getString("userId").toString())
 
             // Select home as default
             replaceFragment(
